@@ -34,6 +34,8 @@
 }
 ?>
 
+
+<!-- Modal detalhes do cuidador -->
 <div class="container">
   <div class="modal fade" id="ModalDetalhes" tabindex="-1" role="dialog" aria-labelledby="ModalDetalhesLabel">
     <div class="modal-dialog" role="document">
@@ -56,7 +58,7 @@
 
 
              <div class="form-group">
-              
+
               <label for="recipient-nome" class="control-label">Nome:</label><output name="nome" type="text" class="form-control" id="recipient-nome">
             </div>
 
@@ -126,6 +128,8 @@
             });
 
           </script>
+
+          <!-- Acaba a modal de visualizar detalhes -->
 
           <!-- modal editar -->
           <div class="container">

@@ -16,7 +16,7 @@ if(isset($_POST['nome']) && isset($_POST['username']) && isset($_POST['email']) 
 	$email = $_POST['email'];
 	$data=date("Y-m-d");
 
-	echo $nome;
+	
 
 
 
@@ -47,6 +47,10 @@ if(isset($_POST['nome']) && isset($_POST['username']) && isset($_POST['email']) 
 		$check = mysqli_stmt_affected_rows($stmt);
 
 		mysqli_close($sqli_connection);
+
+		mysqli_insert_id($sqli_connection);
+
+		//include("criar_pastas.php");
 
 
 

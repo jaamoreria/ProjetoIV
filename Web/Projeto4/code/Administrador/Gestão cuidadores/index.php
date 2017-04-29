@@ -23,12 +23,10 @@ if($_SESSION['login_user_tipo']=='Administrador'){
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?php include("source_link.php"); ?> 
     <!-- Bug com o boostrap, quando abre uma modal, adiciona um padding de 17 à direita, sendo que estas linhas resolvem isso -->
-  <style type="text/css">
-
-    body { padding-right: 0 !important }
-
-
-  </style>  
+    <style type="text/css">
+      body { padding-right: 0 !important }
+    </style>  
+    
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <!-- Site wrapper -->
@@ -506,9 +504,9 @@ if($_SESSION['login_user_tipo']=='Administrador'){
 <script type="text/javascript">
   
   $('.ajax').click(function(){
-    if(resultado="true"){
-    Pace.restart();
-  }
+    if(resultado=="true"){
+      Pace.restart();
+    }
   });
   
 </script>
