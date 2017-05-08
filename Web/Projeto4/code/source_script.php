@@ -39,5 +39,7 @@
 <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
 
+<script src="../../sco-js/js/sco.message.js"></script>
+
 
 
