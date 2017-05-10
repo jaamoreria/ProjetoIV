@@ -184,7 +184,8 @@ if($_SESSION['login_user_tipo']=='Administrador'){
             </a>
             <ul class="treeview-menu">
               <li><a href="Gestão cuidadores/index.php"><i class="fa fa-circle-o"></i> Gestão de cuidadores</a></li>
-              <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Gestão de monitorizados</a></li>
+              <li><a href="Gestão monitorizados/index.php"><i class="fa fa-circle-o"></i> Gestão de monitorizados</a></li>
+              <li><a href="Gestão de grupos/index.php"><i class="fa fa-circle-o"></i> Gestão dos grupos</a></li>
             </ul>
           </li>
 

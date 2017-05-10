@@ -355,7 +355,7 @@ $("#sub").click(function(e) {
 
     resultado="true";
 
-    alert($("#f1").serialize());
+    
     var url = "BD_Inserir_Cuidador.php"; 
 
     $.ajax({

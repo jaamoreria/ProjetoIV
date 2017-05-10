@@ -4,14 +4,13 @@
       <tr>
         <th>Nome</th>
         <th>IMEI</th>
-        <th>Descrição</th>
         <th>Data de Nascimento</th>
-        <th>Data de Admissão</th>
+        <th>Número de elementos no grupo</th>
         <th style="text-align:right;">Opções</th>
       </tr>
     </thead>
 
-    <?php include ("Obter_Monitorizados.php"); ?>
+    <?php include ("Obter_Grupos.php"); ?>
   </table>
 </div>
 

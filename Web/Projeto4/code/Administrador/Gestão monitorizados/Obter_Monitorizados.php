@@ -10,25 +10,25 @@
   
 
 
-  $query_obterDados = "SELECT ID_Cuidador, Nome, Username, Telemovel, Email, Data_Admissao, Imagem, Password from cuidador";
+  $query_obterDados = "SELECT ID_Monitorizado, Nome, IMEI, Descricao, Data_Nascimento, Data_Admissao from monitorizado";
   $dados = mysqli_query($sqli_connection,$query_obterDados);
   
-  while($cuidador = mysqli_fetch_array($dados)){
+  while($monitorizado = mysqli_fetch_array($dados)){
 
     ?>
     <tr>
-      <th><?php echo $cuidador['Nome']; ?></th>
-      <th><?php echo $cuidador['Username']; ?></th>
-      <th><?php echo $cuidador['Email']; ?></th>
-      <th><?php echo $cuidador['Telemovel']; ?></th>
-      <th><?php echo $cuidador['Data_Admissao']; ?></th>
+      <th><?php echo $monitorizado['Nome']; ?></th>
+      <th><?php echo $monitorizado['IMEI']; ?></th>
+      <th><?php echo $monitorizado['Descricao']; ?></th>
+      <th><?php echo $monitorizado['Data_Nascimento']; ?></th>
+      <th><?php echo $monitorizado['Data_Admissao']; ?></th>
     </td>
     <td>
       <span class="btn glyphicon glyphicon-trash"  style="position: relative; float: right; margin-right: -5px"></span>
 
-      <span class="btn glyphicon glyphicon-pencil"  style="position: relative; float: right; margin-right: -5px" data-toggle="modal" data-target="#ModalEdit" data-id="<?php echo $cuidador['ID_Cuidador']; ?>" data-nome="<?php echo $cuidador['Nome']; ?>" data-username="<?php echo $cuidador['Username']; ?>" data-telemovel="<?php echo $cuidador['Telemovel']; ?>" data-email="<?php echo $cuidador['Email']; ?>" data-password="<?php echo $cuidador['Password']; ?>"></span>
+      <span class="btn glyphicon glyphicon-pencil"  style="position: relative; float: right; margin-right: -5px" data-toggle="modal" data-target="#ModalEdit" data-id="<?php echo $monitorizado['ID_Monitorizado']; ?>" data-nome="<?php echo $monitorizado['Nome']; ?>" data-imei="<?php echo $monitorizado['IMEI']; ?>" data-descricao="<?php echo $monitorizado['Descricao']; ?>" data-nasc="<?php echo $monitorizado['Data_Nascimento']; ?>"></span>
 
-      <span class="btn glyphicon glyphicon-eye-open"  style="position: relative; float: right; margin-right: -5px" data-toggle="modal" data-target="#ModalDetalhes" data-id="<?php echo $cuidador['ID_Cuidador']; ?>" data-nome="<?php echo $cuidador['Nome']; ?>" data-username="<?php echo $cuidador['Username']; ?>" data-telemovel="<?php echo $cuidador['Telemovel']; ?>" data-email="<?php echo $cuidador['Email']; ?>" ></span>
+      <span class="btn glyphicon glyphicon-eye-open"  style="position: relative; float: right; margin-right: -5px" data-toggle="modal" data-target="#ModalDetalhes"  data-id="<?php echo $monitorizado['ID_Monitorizado']; ?>" data-nome="<?php echo $monitorizado['Nome']; ?>" data-imei="<?php echo $monitorizado['IMEI']; ?>" data-descricao="<?php echo $monitorizado['Descricao']; ?>" data-nasc="<?php echo $monitorizado['Data_Nascimento']; ?>" ></span>
     </td>                   
   </tr>
 
@@ -37,7 +37,7 @@
 ?>
 
 
-<!-- Modal detalhes do cuidador -->
+<!-- Modal detalhes do monitorizado -->
 <div class="container">
   <div class="modal fade" id="ModalDetalhes" tabindex="-1" role="dialog" aria-labelledby="ModalDetalhesLabel">
     <div class="modal-dialog" role="document">
@@ -64,18 +64,18 @@
               </div>
 
               <div class="form-group">
-                <label for="recipient-username" class="control-label">Username:</label>
-                <output name="username" type="text" class="form-control" id="recipient-username">
+                <label for="recipient-imei" class="control-label">IMEI:</label>
+                <output name="imei" type="text" class="form-control" id="recipient-imei">
                 </div>
 
                 <div class="form-group">
-                  <label for="recipient-email" class="control-label">Email:</label>
-                  <output name="email" type="email" class="form-control" id="recipient-email">
+                  <label for="recipient-desc" class="control-label">Descrição:</label>
+                  <output name="desc" type="text" class="form-control" id="recipient-desc">
                   </div>
 
                   <div class="form-group">
-                    <label for="recipient-telemovel" class="control-label">Telemóvel:</label>
-                    <output name="telemovel" type="number" class="form-control" id="recipient-telemovel">
+                    <label for="recipient-nasc" class="control-label">Data de nascimento:</label>
+                    <output name="nasc" type="text" class="form-control" id="recipient-nasc">
                     </div>
                     <button type="submit" name="a" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                   </form>
@@ -95,18 +95,18 @@
               var button = $(event.relatedTarget) 
               var recipientid = button.data('id')
               var recipientnome = button.data('nome')
-              var recipientemail = button.data('email')
-              var recipientusername = button.data('username')
-              var recipienttelemovel = button.data('telemovel')
+              var recipientimei = button.data('imei')
+              var recipientdescrição = button.data('descricao')
+              var recipientnasc = button.data('nasc')
 
 
 
               var modal = $(this)
               modal.find('#id').val(recipientid)
               modal.find('#recipient-nome').val(recipientnome)
-              modal.find('#recipient-username').val(recipientusername)
-              modal.find('#recipient-email').val(recipientemail)
-              modal.find('#recipient-telemovel').val(recipienttelemovel)
+              modal.find('#recipient-imei').val(recipientimei)
+              modal.find('#recipient-desc').val(recipientdescrição)
+              modal.find('#recipient-nasc').val(recipientnasc)
 
 
 
@@ -133,61 +133,48 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="ModalEditLabel">Editar dados do cuidador</h4>
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="ModalEditLabel">Editar</h4>
                 </div>
+
                 <div class="modal-body">
-                  <form id="f2" method="POST" action="" enctype="multipart/form-data" autocomplete="off">
-                    <div class="form-group" style="display: none;">
-                     <label for="recipient-id" class="control-label">ID:</label>
-                     <input name="id" type="text" class="form-control" id="recipient-id">
+                  <form name ="f2" id="f2" method="POST" action="" enctype="multipart/form-data" autocomplete="off">
+                    <div class="form-group" id="imagem">
+                    </div>
+
+                    <div class="form-group" style="display: none;" id="idEdit">
+                     <label for="editar-idEdit" class="control-label">ID:</label>
+                     <input name="idEdit" type="text" class="form-control" id="editar-idEdit">
                    </div>
+
                    <div class="form-group" id="nomeEdit">
-                     <label for="editar-nomeEdit" class="control-label">Nome:</label>
-                     <input name="nomeEdit" type="text" class="form-control" id="editar-nomeEdit" required>
 
-                     <label class="control-label" for="editar-nomeEdit" id="vazio-nomeEdit" style="display:none;"><i class="fa fa-times-circle-o"></i> Campo vazio</label>
-                   </div>
-
-                   <div class="form-group" id="usernameEdit">
-                    <label for="editar-usernameEdit" class="control-label">Username:</label>
-                    <input name="usernameEdit" type="text" class="form-control" id="editar-usernameEdit" required>
-
-                    <label class="control-label" for="editar-usernameEdit" id="erro_usernameEdit" style="display:none;"><i class="fa fa-times-circle-o"></i> Não disponível</label>
-                    <label class="control-label" for="editar-usernameEdit" id="sucesso_usernameEdit" style="display:none;"><i class="fa fa-check"></i> Disponível</label>
-                    <label class="control-label" for="editar-usernameEdit" id="vazio-usernameEdit" style="display:none;"><i class="fa fa-times-circle-o"></i> Campo vazio</label>
-
-                  </div>
-                  <div class="form-group" id="emailEdit">
-                    <label for="editar-emailEdit" class="control-label">Email:</label>
-                    <input name="emailEdit" type="email" class="form-control" id="editar-emailEdit" required>
-
-                    <label class="control-label" for="editar-emailEdit" id="erro_emailEdit" style="display:none;"><i class="fa fa-times-circle-o"></i> Não disponível</label>
-                    <label class="control-label" for="editar-emailEdit" id="sucesso_emailEdit" style="display:none;"><i class="fa fa-check"></i> Disponível</label>
-                    <label class="control-label" for="editar-emailEdit" id="vazio-emailEdit" style="display:none;"><i class="fa fa-times-circle-o"></i> Campo vazio</label>
-                    <label class="control-label" for="editar-emailEdit" id="incompleto-emailEdit" style="display:none;"><i class="fa fa-times-circle-o"></i> Formato errado</label>
-
-                  </div>
-                  <div class="form-group" id="telemovelEdit">
-                    <label for="editar-telemovelEdit" class="control-label">Telemóvel:</label>
-                    <input name="telemovelEdit" type="number" class="form-control" id="editar-telemovelEdit" required>
-
-                    <label class="control-label" for="editar-telemovelEdit" id="vazio-telemovelEdit" style="display:none;"><i class="fa fa-times-circle-o"></i> Campo vazio</label>
-
+                    <label for="editar-nomeEdit" class="control-label">Nome:</label>
+                    <input name="nomeEdit" type="text" class="form-control" id="editar-nomeEdit">
+                    <label class="control-label" for="editar-nomeEdit" id="vazio-nomeEdit" style="display:none;"><i class="fa fa-times-circle-o"></i> Campo vazio</label> 
                   </div>
 
-                  <label class="control-label">Password:</label>
-                  <div class="form-group input-group" id="passwordEdit">
-                    <input name="passwordEdit" type="password" class="form-control" id="editar-passwordEdit" required>
-                    <label class="control-label"  id="vazio-passEdit" style="display:none;"><i class="fa fa-times-circle-o"></i> Campo vazio</label>
-                    <div class="input-group-btn">
-                      <button type="button" class="btn btn-default" aria-label="Help" id="ver"><span class="glyphicon glyphicon-eye-open" id="icone"></span></button>
-                    </div> 
+                  <div class="form-group" id="imeiEdit">
+                    <label for="editar-imeiEdit" class="control-label">IMEI:</label>
+                    <input name="imeiEdit" type="text" class="form-control" id="editar-imeiEdit">
+                    <label class="control-label" for="editar-imeiEdit" id="erro_imeiEdit" style="display:none;"><i class="fa fa-times-circle-o"></i> Já utilizado</label>
+                    <label class="control-label" for="editar-imeiEdit" id="sucesso_imeiEdit" style="display:none;"><i class="fa fa-check"></i> Disponível</label>
+                    <label class="control-label" for="editar-imeiEdit" id="vazio-imeiEdit" style="display:none;"><i class="fa fa-times-circle-o"></i> Campo vazio</label>
                   </div>
 
+                  <div class="form-group" id="descEdit">
+                    <label for="editar-descEdit" class="control-label">Descrição:</label>
+                    <input name="descEdit" type="text" class="form-control" id="editar-descEdit">
+                    <label class="control-label" for="editar-descEdit" id="vazio-descEdit" style="display:none;"><i class="fa fa-times-circle-o"></i> Campo vazio</label>
+                  </div>
 
-                  <button type="button" name="edit_user" class="btn btn-success ajax"  id="edit" >Registar</button>
-                  <button type="submit" name="clear" class="btn btn-danger" data-dismiss="modal" id="clean">Cancelar</button>
+                  <div class="form-group" id="nascEdit">
+                    <label for="editar-nascEdit" class="control-label">Data de nascimento:</label>
+                    <input name="nascEdit" type="text" class="form-control" id="editar-nascEdit" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
+                    <label class="control-label" for="editar-nascEdit" id="vazio-nascEdit" style="display:none;"><i class="fa fa-times-circle-o"></i> Campo vazio</label>
+                  </div>
+                  <button type="button" name="submeter_user" class="btn btn-success ajax"  id="edit">Submeter</button>
+                  <button type="submit" name="a" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                 </form>
               </div>
             </div>
@@ -199,65 +186,39 @@
         <script>
           var recipientid
           var recipientnome
-          var recipientemail
-          var recipientusername
-          var recipienttelemovel
-          var recipientpassword
+          var recipientimei
+          var recipientdesc
+          var recipientnasc
+
 
           $('#ModalEdit').on('show.bs.modal', function (event) {
 
 
             var button = $(event.relatedTarget) 
-            recipientid = button.data('id')
-            recipientnome = button.data('nome')
-            recipientemail = button.data('email')
-            recipientusername = button.data('username')
-            recipienttelemovel = button.data('telemovel')
-            recipientpassword = button.data('password')
+            var recipientid = button.data('id')
+            var recipientnome = button.data('nome')
+            var recipientimei = button.data('imei')
+            var recipientdescrição = button.data('descricao')
+            var recipientnasc = button.data('nasc')
 
 
 
             var modal = $(this)
-            modal.find('#recipient-id').val(recipientid)
+            modal.find('#editar-idEdit').val(recipientid)
             modal.find('#editar-nomeEdit').val(recipientnome)
-            modal.find('#editar-usernameEdit').val(recipientusername)
-            modal.find('#editar-emailEdit').val(recipientemail)
-            modal.find('#editar-telemovelEdit').val(recipienttelemovel)
-            modal.find('#editar-passwordEdit').val(recipientpassword)
+            modal.find('#editar-imeiEdit').val(recipientimei)
+            modal.find('#editar-descEdit').val(recipientdescrição)
+            modal.find('#editar-nascEdit').val(recipientnasc)
 
 
 
           });
 
-          var open = 'glyphicon-eye-open';
-          var close = 'glyphicon-eye-close';
-          var ele = document.getElementById('editar-passwordEdit');
-
-
-
-          document.getElementById('ver').onclick = function() {
-
-
-            if($('#icone').hasClass('glyphicon glyphicon-eye-open')){
-
-              $("#icone").attr("class", "glyphicon glyphicon-eye-close");
-              ele.type="text";
-            }else{
-
-              $("#icone").attr("class", "glyphicon glyphicon-eye-open");
-              ele.type="password";
-            }
-
-          }
-
-
-
-
 
         </script>
 
         <script src="../../../plugins/jQuery/jquery-2.2.3.min.js"></script>
-        <script src="Validações/validação_editar_cuidador.js"></script>
+        <script src="Validações/validação_editar_monitorizado.js"></script>
 
 
       </body>

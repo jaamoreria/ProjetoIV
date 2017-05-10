@@ -250,7 +250,7 @@ if($_SESSION['login_user_tipo']=='Administrador'){
                 </div>
                 <!-- /.box-header -->
 
-                <?php include("Tabela_Dados_Monitorizados.php"); ?>
+                <?php include("Tabela_Dados_Grupos.php"); ?>
 
               </div>
 

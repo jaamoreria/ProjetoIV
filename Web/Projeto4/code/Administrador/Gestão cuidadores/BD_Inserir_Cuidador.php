@@ -14,7 +14,7 @@ if(isset($_POST['nome']) && isset($_POST['username']) && isset($_POST['email']) 
 	$password = $_POST['password'];
 	$telemovel = $_POST['telemovel'];
 	$email = $_POST['email'];
-	$data=date("Y-m-d");
+	$data=date("d/m/Y");
 
 	
 
