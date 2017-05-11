@@ -245,8 +245,6 @@ if($_SESSION['login_user_tipo']=='Administrador'){
               <div class="box box-primary">
                 <div class="box-header">
                   <h3 class="box-title">Lista dos monitorizados</h3>
-
-                  <?php include ("Inserir_Monitorizados.php"); ?>
                 </div>
                 <!-- /.box-header -->
 
