@@ -4,6 +4,9 @@
   }
 </style>
 
+
+
+
 <table id="example1" class="table table-bordered table-striped">
   <thead>
     <tr>
@@ -18,8 +21,8 @@
   <style>
 
 
-  <?php include ("Obter_Grupo.php"); ?>
-</table>
+    <?php include ("Obter_Grupo.php"); ?>
+  </table>
 
 
 

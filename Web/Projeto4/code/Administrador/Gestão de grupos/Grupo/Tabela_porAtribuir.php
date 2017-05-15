@@ -1,4 +1,5 @@
-<form method='POST' id='form' >
+
+<form method='POST' id='form' name="form">
 <table id="example2" class="table table-bordered table-striped">
   <thead>
     <tr>
@@ -13,15 +14,25 @@
   <?php include ("Obter_porAtribuir.php"); ?>
 </table>
 
-  <input class="btn btn-default" type='submit' name="check"> 
+  <button class="btn btn-default" type='button' name="check" id="check">Associar</button>
 </form>
-<?php
-if(isset($_POST['check'])){
+
+<script>
+$("#check").click(function(e) {
   
-  include('guarda_atribuições.php');
-  
-}
-?>
+ $.ajax({
+    type: 'POST',
+    url: "guarda_atribuições.php",
+    data:$("#form").serialize(),
+    success:function(data){
+     window.location="Listar_Grupo.php";
+     
+   }
+ });
+});
+</script>
+
+
 
 
 

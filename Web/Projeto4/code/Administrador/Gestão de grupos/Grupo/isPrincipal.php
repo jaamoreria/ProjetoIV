@@ -11,6 +11,9 @@ $check;
 
 $query_controlo = "SELECT isPrincipal from grupo WHERE ID_Monitorizado='$monitorizado' AND ID_Cuidador!='$id'";
 $results_controlo = mysqli_query($sqli_connection,$query_controlo);
+$contagem=mysqli_num_rows($results_controlo);
+
+if($contagem!=0){
 while($controlo=mysqli_fetch_array($results_controlo)){
   if($controlo['isPrincipal']=="Sim"){
     $check="erro";
@@ -20,7 +23,9 @@ while($controlo=mysqli_fetch_array($results_controlo)){
 
 }
 
-
+}else{
+  $check="ok";
+}
 
 
 if($check=="ok"){
