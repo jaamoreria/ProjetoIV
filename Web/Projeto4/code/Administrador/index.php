@@ -130,7 +130,7 @@ if($_SESSION['login_user_tipo']=='Administrador'){
               <!-- User image -->
               <li class="user-header">
                 <img src="vazio.jpg" class="img-circle" alt="User Image">
-
+                
                 <p>
                   <?php echo $_SESSION['login_user_tipo']; ?>
                 </p>
@@ -138,7 +138,7 @@ if($_SESSION['login_user_tipo']=='Administrador'){
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Logout</a>
+                  <a href="../../logout.php" class="btn btn-default btn-flat">Logout</a>
                 </div>
               </li>
             </ul>
