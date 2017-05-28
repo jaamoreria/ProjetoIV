@@ -18,7 +18,7 @@
   
   while($monitorizado = mysqli_fetch_array($dados)){
 
-    $grupo_dados_query = "SELECT isPrincipal, Recebe_SMS, Recebe_MAIL from grupo WHERE ID_Monitorizado='$id' AND ID_Cuidador=".$monitorizado['ID_Cuidador'];
+    $grupo_dados_query = "SELECT isPrincipal, Aviso_SMS_MAIL from grupo WHERE ID_Monitorizado='$id' AND ID_Cuidador=".$monitorizado['ID_Cuidador'];
     $result = mysqli_query($sqli_connection,$grupo_dados_query);
     $grupo = mysqli_fetch_assoc($result);
 
@@ -48,7 +48,7 @@
     <span id="<?php echo $monitorizado['ID_Cuidador']."erro"; ?>" class="glyphicon glyphicon-ban-circle"  style="position: relative; float: right; margin-top:0px; color:red; display:none;"></span>
 
   </td>
-  <td><?php echo $grupo['Recebe_SMS']."/".$grupo['Recebe_MAIL'] ?></td>
+  <td><?php echo $grupo['Aviso_SMS_MAIL'] ?></td>
 </td>
 <td>
 
@@ -165,7 +165,7 @@
                 url: "isPrincipal.php",
                 data:{id:user,estado:selecionado, id_monitorizado:monitorizado},
                 success:function(data){
-
+                  
 
                  if($.trim(data)=="Erro"){
                   $("#"+user+"check").hide();

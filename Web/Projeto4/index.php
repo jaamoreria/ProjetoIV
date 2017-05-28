@@ -62,7 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   //Caso as credenciais sejam de um cuidador
 if($verifica_credenciais=="true"){
 
-  $_SESSION['login_user_id']=$id;
+  $_SESSION['login_user_id']=$id_cuidador;
   $_SESSION['login_user_nome']=$nome;
   $_SESSION['login_user_mail']=$mail;
   $_SESSION['login_user_imagem']=$imagem;

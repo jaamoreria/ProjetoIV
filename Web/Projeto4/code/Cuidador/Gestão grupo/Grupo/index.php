@@ -29,7 +29,7 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
     <style type="text/css">
       body { padding-right: 0 !important }
     </style>
-     
+
     
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
@@ -262,8 +262,12 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
                   
 
                   <div id="tab2" class="tab-pane fade">
-                  <?php include("mapa.php"); ?>
+                    
+                    <?php include("mapa.php"); ?>
+                    
+
                   </div>
+
 
                   
                   <!-- /.tab-pane -->
