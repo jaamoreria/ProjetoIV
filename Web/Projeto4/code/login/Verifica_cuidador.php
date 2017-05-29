@@ -11,27 +11,36 @@ if(isset($_POST["username"]) && isset($_POST["password"])){
 		$stmt -> bind_param("ss", $username, $password);
 		$result = $stmt -> execute();
 
-		$stmt -> bind_result($id, $nome, $mail);
 
-		$resultados = $stmt->get_result();
-		$cuidador=[];
+		$stmt->bind_result($id, $Nome, $Email, $Imagem);
+		$stmt->store_result();
+		$conta=$stmt->num_rows;
 
-		while($dados= $resultados->fetch_array(MYSQLI_ASSOC)){
+		
 
-			$id_cuidador=$dados['ID_Cuidador'];
-			$nome=$dados['Nome'];
-			$mail=$dados['Email'];
-			$imagem=$dados['Imagem'];	
+		if($conta!=0){
+			
+			$cuidador=[];
+
+			while($dados= $stmt->fetch()){
+
+				$id_cuidador=$id;
+				$nome=$Nome;
+				$mail=$Email;
+				$imagem=$Imagem;
+				
+			}
+
+			$stmt -> close();
+			$verifica_credenciais="true";
+
+		}else{
+			$verifica_credenciais="false";
 		}
 
-		$stmt -> close();
-		$verifica_credenciais="true";
-
-
-
 	}else{
-	 	
-	 }
+
+	}
 
 
 

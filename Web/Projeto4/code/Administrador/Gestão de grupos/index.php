@@ -18,7 +18,7 @@ if($_SESSION['login_user_tipo']=='Administrador'){
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Pace Page</title>
+    <title>Gestão dos grupos-Escolha</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?php include("source_link.php"); ?> 
@@ -34,11 +34,11 @@ if($_SESSION['login_user_tipo']=='Administrador'){
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="../../index2.html" class="logo">
+        <a href="../index.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>A</b>LT</span>
+          <span class="logo-mini"><b>A</b>LZ</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Admin</b>LTE</span>
+          <span class="logo-lg"><b>Al</b>zheimer</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -66,7 +66,7 @@ if($_SESSION['login_user_tipo']=='Administrador'){
                       <li><!-- start message -->
                         <a href="#">
                           <div class="pull-left">
-                            <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="vazio.jpg" class="img-circle" alt="User Image">
                           </div>
                           <h4>
                             Support Team
@@ -82,68 +82,18 @@ if($_SESSION['login_user_tipo']=='Administrador'){
                 </ul>
               </li>
               <!-- Notifications: style can be found in dropdown.less -->
-              <li class="dropdown notifications-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-bell-o"></i>
-                  <span class="label label-warning">10</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="header">You have 10 notifications</li>
-                  <li>
-                    <!-- inner menu: contains the actual data -->
-                    <ul class="menu">
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="footer"><a href="#">View all</a></li>
-                </ul>
-              </li>
-              <!-- Tasks: style can be found in dropdown.less -->
-              <li class="dropdown tasks-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-flag-o"></i>
-                  <span class="label label-danger">9</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="header">You have 9 tasks</li>
-                  <li>
-                    <!-- inner menu: contains the actual data -->
-                    <ul class="menu">
-                      <li><!-- Task item -->
-                        <a href="#">
-                          <h3>
-                            Design some buttons
-                            <small class="pull-right">20%</small>
-                          </h3>
-                          <div class="progress xs">
-                            <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                              <span class="sr-only">20% Complete</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <!-- end task item -->
-                    </ul>
-                  </li>
-                  <li class="footer">
-                    <a href="#">View all tasks</a>
-                  </li>
-                </ul>
-              </li>
+              
+              
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                  <img src="vazio.jpg" class="user-image" alt="User Image">
                   <span class="hidden-xs">Administrador</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="vazio.jpg" class="img-circle" alt="User Image">
                   </li>
                   <!-- Menu Body -->
                   <li class="user-body">
@@ -208,10 +158,10 @@ if($_SESSION['login_user_tipo']=='Administrador'){
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
-              <ul class="treeview-menu">
+              <ul class=" active treeview-menu">
                 <li><a href="../Gestão cuidadores/index.php"><i class="fa fa-circle-o"></i> Gestão de cuidadores</a></li>
                 <li><a href="../Gestão monitorizados/index.php"><i class="fa fa-circle-o"></i> Gestão de monitorizados</a></li>
-                <li><a href="index.php"><i class="fa fa-circle-o"></i> Gestão de grupos</a></li>
+                <li class="active"><a href="index.php"><i class="fa fa-circle-o"></i> Gestão de grupos</a></li>
               </ul>
             </li>
 
@@ -231,10 +181,10 @@ if($_SESSION['login_user_tipo']=='Administrador'){
               <!-- /.box -->
               <div class="box box-primary">
                 <div class="box-header">
-                  <h3 class="box-title">Lista dos monitorizados</h3>
+                  <h3 class="box-title">Lista dos grupos</h3>
                 </div>
                 <!-- /.box-header -->
-
+                
                 <?php include("Tabela_Dados_Grupos.php"); ?>
 
               </div>

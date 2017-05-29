@@ -10,7 +10,7 @@
         <th style="text-align:right;">Opções</th>
       </tr>
     </thead>
-
+    
     <?php include ("Obter_Monitorizados.php"); ?>
   </table>
 </div>

@@ -18,7 +18,7 @@ if($_SESSION['login_user_tipo']=='Administrador'){
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?php include("source_link.php"); ?>
@@ -28,11 +28,11 @@ if($_SESSION['login_user_tipo']=='Administrador'){
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="index.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>A</b>LT</span>
+          <span class="logo-mini"><b>A</b>LZ</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Admin</b>LTE</span>
+          <span class="logo-lg"><b>Al</b>zheimer</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">

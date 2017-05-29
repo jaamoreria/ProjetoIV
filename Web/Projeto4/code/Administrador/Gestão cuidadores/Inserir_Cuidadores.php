@@ -3,7 +3,9 @@
 include ("../../../BD.php");
 ?>
 
-
+<script src="../../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
 
 <span class="btns glyphicon glyphicon-plus" style="position: relative; float: right; margin-right: -2px" data-toggle="modal" data-target="#ModalInserir"></span>
@@ -79,7 +81,7 @@ include ("../../../BD.php");
 
 
 
-<script src="../../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+
 <script src="Validações/validação_inserir_cuidador.js"></script> <!-- Uso de uma validação manual, verificar disponibilidades de username etc, e verificar se os campos estão vazios, pois o required não funciona com o tipo de botão como "button" (Uso desse tipo para que ao submeter os dados, não fazer refresh inteiro da página, mas apenas parcialmente);-->
 
 

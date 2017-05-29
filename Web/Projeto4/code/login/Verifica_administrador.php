@@ -4,14 +4,18 @@
 
 function existencia_admin($username, $password) {
 
-	$verificação="false";
+	$verificação;
 
-	if($username=="Admin" && $password=="admin") $verificação="true";
+	if($username=="Admin" && $password=="admin"){
+		$verificação="true";
+	}else{
+		$verificação="false";
+	}
 	
 	return $verificação;
 }
 
-$verifica_credenciais="false";	
+
 
 
 ?>

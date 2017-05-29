@@ -6,14 +6,27 @@ $id_cuidador=$_SESSION['login_user_id'];
 
 ?>
 
-
-<input id="input" class="controls pac-input" type="text" placeholder="Localização" required>
+<link rel="stylesheet" type="text/css" href="../../../../css/set1.css" />
 <div class="row">
-  <div class="col-md-8">  
-    <div id="mapDiv" style="height: 600px;">
+
+  <div class="col-md-7"> 
+    
+    <span class="input input--hoshi" style="margin-top: -5px !important;">
+          <input class="input__field input__field--hoshi" type="text" id="input-4" placeholder="">
+          <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+            <span class="input__label-content input__label-content--hoshi">Localização</span>
+          </label>
+        </span>
+    
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-7">  
+    <div id="mapDiv" style="height: 500px;">
     </div>
   </div>
-  <div class="col-md-4">       
+  <div class="col-md-5">       
     <div class="box box-widget widget-user-2">   
       <div class="widget-user-header" style="background-color:#00619B;">
         <h3 class="widget-user-username" style="color:white;">Detalhes</h3>
@@ -22,12 +35,19 @@ $id_cuidador=$_SESSION['login_user_id'];
         <ul class="nav nav-stacked">
           <label id="aviso">Selecione uma área segura</label>
           <li style="display:none;" id="label_nome"><label>Nome:</label><a><output id="nome_area"></output></a></li>
+
           <li style="display:none;" id="label_autor"><label style="margin-top: 20px;">Autor:</label><a><output id="nome_autor"></output></a></li>
-          <li style="display:none;" id="label_botões"><a><button class="btn btn-danger"  name="apagar" id="apagar" onclick="apagar_cancelar()">Apagar</button><button class="btn btn-primary" id="editar" name="editar" onclick="editar_confirmar()" style="position: relative; float: right; margin-right: -5px">Editar</button></a></li>
-        </ul>
-      </div>
+
+          <li style="display:none;" id="label_botões"><a>
+            <button class="btn btn-danger"  style="display:none;" name="cancelar" id="cancelar" onclick="cancelar()" >Cancelar</button>
+            <button class="btn btn-danger"  name="apagar" id="apagar">Apagar</button>
+            <button class="btn btn-primary" id="editar" name="editar" onclick="editar_confirmar()" style="position: relative; float: right; margin-right: -5px">Editar</button>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
+</div>
 </div>
 
 <script src="https://cdn.klokantech.com/maptilerlayer/v1/index.js"></script>
@@ -36,11 +56,12 @@ $id_cuidador=$_SESSION['login_user_id'];
 
 
 <script>
-  $("#editar").click(function(){
 
-  });
-
+  var area_antes;
+  
   function editar_confirmar() {
+
+    area_antes=$('#nome_area').val();
 
     var name=$('#editar').attr('name');
     if(name=="editar"){
@@ -49,8 +70,9 @@ $id_cuidador=$_SESSION['login_user_id'];
       $('#editar').addClass('btn btn-success');
       $('#editar').text('Confirmar'); 
 
-      $('#apagar').text('Cancelar');
-      $('#apagar').attr('name', "cancelar");
+      
+      $('#apagar').hide();
+      $('#cancelar').show();
       $('#editar').attr('name', "confirmar");
 
       $("#nome_area").each( function(){
@@ -81,8 +103,8 @@ $id_cuidador=$_SESSION['login_user_id'];
           $('#editar').addClass('btn btn-primary');
           $('#editar').text('Editar'); 
 
-          $('#apagar').text('Apagar');
-          $('#apagar').attr('name', "apagar");
+          $('#apagar').show();
+          $('#cancelar').hide();
           $('#editar').attr('name', "editar");
 
           $("#nome_area").each( function(){
@@ -105,34 +127,35 @@ $id_cuidador=$_SESSION['login_user_id'];
     }
   }
 
-  function apagar_cancelar() {
-
-    var name=$('#apagar').attr('name');
-    if(name=="cancelar"){
+  function cancelar() {
 
 
-      $('#editar').removeClass('btn btn-success');
-      $('#editar').addClass('btn btn-primary');
-      $('#editar').text('Editar'); 
 
-      $('#apagar').text('Apagar');
-      $('#apagar').attr('name', "apagar");
-      $('#editar').attr('name', "editar");
 
-      $("#nome_area").each( function(){
-        var bla = $('#nome_area').val();
-        var content = $( "<output>" );
-        var content_final=$( "</output>" );
+    $('#editar').removeClass('btn btn-success');
+    $('#editar').addClass('btn btn-primary');
+    $('#editar').text('Editar'); 
 
-        $.each(this.attributes, function(){ 
-          content.attr(this.name, this.value, content_final );
-        });
+    $('#apagar').show();
+    $('#cancelar').hide();
 
-        $(this).replaceWith( content );
-        $('#nome_area').val(bla);
+    $('#editar').attr('name', "editar");
 
+    $("#nome_area").each( function(){
+      var bla = $('#nome_area').val();
+      var content = $( "<output>" );
+      var content_final=$( "</output>" );
+
+      $.each(this.attributes, function(){ 
+        content.attr(this.name, this.value, content_final );
       });
-    }
+
+      $(this).replaceWith( content );
+      $('#nome_area').val(area_antes);
+
+    });
+    
+    
   }
 
   function apagar_poly() {
@@ -283,6 +306,8 @@ $id_cuidador=$_SESSION['login_user_id'];
 
   function ShowGoogleMap() {
 
+
+
     function add(polygon) {
 
 
@@ -392,16 +417,18 @@ $id_cuidador=$_SESSION['login_user_id'];
 
     map = new google.maps.Map(document.getElementById('mapDiv'), {
       center: {lat: -33.8688, lng: 151.2195},
-      zoom: 11
+      zoom: 11,
+      myLocationcontrol: true
     });
     var input = /** @type {!HTMLInputElement} */(
-      document.getElementById('input'));
+      document.getElementById('input-4'));
 
     var types = document.getElementById('type-selector');
 
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
 
     var geoloccontrol = new klokantech.GeolocationControl(map);
+
 
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);

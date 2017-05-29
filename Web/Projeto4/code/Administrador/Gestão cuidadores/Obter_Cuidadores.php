@@ -86,7 +86,7 @@
 
 
           
-          <script src="../../../bootstrap/js/bootstrap.min.js"></script>
+          
           <script>
 
             $('#ModalDetalhes').on('show.bs.modal', function (event) {
@@ -256,7 +256,7 @@
 
         </script>
 
-        <script src="../../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+        
         <script src="Validações/validação_editar_cuidador.js"></script>
 
 

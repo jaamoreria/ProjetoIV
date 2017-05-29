@@ -1,5 +1,5 @@
 <!-- jQuery 2.2.3 -->
-<script src="../../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -7,7 +7,7 @@
 	$.widget.bridge('uibutton', $.ui.button);
 </script>
 <!-- Bootstrap 3.3.6 -->
-<script src="../../../bootstrap/js/bootstrap.min.js"></script>
+
 
 <script src="../../../plugins/select2/select2.full.min.js"></script>
 <!-- InputMask -->

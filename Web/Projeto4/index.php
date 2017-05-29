@@ -54,11 +54,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   $tipo_utilizador=existencia_admin($username, $password);
 
+  
+
   if($tipo_utilizador=="false"){
 
     include ("code/Login/Verifica_cuidador.php");
+    
+
   }
 
+  
   //Caso as credenciais sejam de um cuidador
 if($verifica_credenciais=="true"){
 
@@ -69,7 +74,7 @@ if($verifica_credenciais=="true"){
   $_SESSION['login_user_tipo']="Cuidador";
 
 
-  header("location: code/Cuidador/index.php");
+ header("location: code/Cuidador/index.php");
 
 }else{
 
