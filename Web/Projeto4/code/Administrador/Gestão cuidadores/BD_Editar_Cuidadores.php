@@ -26,9 +26,6 @@ if(isset($_POST['nomeEdit']) && isset($_POST['usernameEdit']) && isset($_POST['e
 
 	$query_inserir = "UPDATE cuidador SET Nome=?, Username=?, Email=?, Password=?, Telemovel=? WHERE ID_Cuidador=?";
 
-//QUERIE IS CORRECT
-
-
 	if ($stmt = $sqli_connection -> prepare($query_inserir)) {
 		$stmt -> bind_param("ssssss", $nome, $username, $email, $password, $telemovel, $id);
 		$stmt -> execute();

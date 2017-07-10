@@ -19,7 +19,7 @@ if(isset($_POST['id'])){
 	$results2 = mysqli_query($sqli_connection,$query2);
 
 	while($row= mysqli_fetch_assoc($results2)){
-    //echo $row['year']."\n";
+    
 
 		
 		
