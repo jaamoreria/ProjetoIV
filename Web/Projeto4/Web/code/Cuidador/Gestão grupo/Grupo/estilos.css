@@ -1,0 +1,136 @@
+legend { display: none }
+* { margin: 0; padding: 0; border: 0 }
+
+	#apresentacao { 
+		width: 960px; 
+		margin: 2% 203px;
+		overflow: hidden;
+}
+     #mapa { 
+		width: 960px;
+		height: 470px;
+		/*border: 10px solid #ccc;;*/
+		margin-top:5px;
+		margin-bottom: 21px;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+	.dados {
+		width: 740px; 
+		margin-left:auto; 
+		overflow: hidden; 
+}
+
+	 .dados label { 
+		margin-top: 8px;
+		background: black;/*#002F2F;#333; */
+		border-radius: 6px 0 0 6px; 
+		color: #f0f0f0; 
+		/*cursor: pointer;*/
+		display: block; 
+		height: 20px; 
+		float: left; 
+		font: 13px 'Open Sans',Arial;
+		padding: 7px 13px;
+		width: 70px;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+	 .dados input[type="submit"] { 
+		margin-top: 8px;
+		background: #2679A5; 
+		border-radius: 0 6px 6px 0;
+		color: #FFF;
+		cursor: pointer;
+		height: 34px;
+		font: 13px 'Open Sans',Arial;
+		padding: 7px 13px;
+		width: 150px;
+		float: left;
+
+}
+
+.dados input[type="submit"]:hover { background: #12587C }
+
+
+.logout { 
+		margin-top: 8px;
+		background: #1e202b; 
+		color: #FFF;
+		cursor: pointer;
+		height: 34px;
+		font: 13px 'Open Sans',Arial;
+		width: 71px;
+		float: right;
+
+}
+
+
+ #dados_user{ 
+		margin-top: 16px;
+		background: #1e202b; 
+		color: #FFF;
+		cursor: pointer;
+		height: 34px;
+		font: 13px 'Open Sans',Arial;
+		width: 83px;
+		float: right;
+
+}
+
+
+
+
+
+
+ /* Fornecido pela API do google e algumas regras dessas mesmas foram editadas */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #1e202b;/*#d3d3d3;*/
+		overflow-y: hidden;
+      }
+      .controls {
+		float: left; 
+        margin-top: 8px;
+		margin-bottom: 2px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 33px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+
+      }
+
+      .pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 300px;
+      }
+
+      .pac-input:focus {
+        border-color: #4d90fe;
+      }
+
+      .pac-container {
+        font-family: Roboto;
+      }
+
+      #type-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        padding: 5px 11px 0px 11px;
+      }
+
+      #type-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }

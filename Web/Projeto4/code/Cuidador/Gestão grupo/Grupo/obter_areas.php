@@ -1,61 +1,61 @@
+<HTML>
+  <body>
+    <?php 
+    session_start();
+    $id_cuidador= $_SESSION['login_user_id'];
+    ?>
+
+    <style>
+      td {
+        font-weight: normal;
+      }
+    </style>
+
+
+    <?php
+
+  include ("../../../../BD.php"); // ligação à BD
+
+  $principalControlo_query = "SELECT isPrincipal from grupo WHERE ID_Monitorizado='$id' AND ID_Cuidador=".$id_cuidador;
+    $result_principal = mysqli_query($sqli_connection,$principalControlo_query);
+    $principal = mysqli_fetch_assoc($result_principal);
+  
+  $query_obterDados="SELECT ID_Cuidador, Username, Nome, Email, Telemovel from cuidador WHERE ID_Cuidador in (SELECT ID_Cuidador from grupo WHERE ID_Monitorizado='$id')";
+
+  $dados = mysqli_query($sqli_connection,$query_obterDados);
+  
+  while($monitorizado = mysqli_fetch_array($dados)){
+
+    $grupo_dados_query = "SELECT isPrincipal, Aviso_SMS_MAIL, Definir_Areas from grupo WHERE ID_Monitorizado='$id' AND ID_Cuidador=".$monitorizado['ID_Cuidador'];
+    $result = mysqli_query($sqli_connection,$grupo_dados_query);
+    $grupo = mysqli_fetch_assoc($result);
+
+    ?>
+    <tr>
+      <td><?php echo $monitorizado['Nome']; ?></td>
+      <td><?php echo $monitorizado['Email']; ?></td>
+          
+</tr>
+
 <?php
-
-
-include ("../../../../BD.php");
-
-
-
-
-if(isset($_POST['id'])){
-
-
-	
-	$coordenadas = [];
-	$monitorizado=$_POST['id'];
-
-
-
-	$query2 = "SELECT ID_Area, LatLong, Descricao FROM area_segura  WHERE ID_Monitorizado=".$monitorizado;
-	$results2 = mysqli_query($sqli_connection,$query2);
-
-	while($row= mysqli_fetch_assoc($results2)){
-    
-
-		
-		
-
-		$rray = unserialize($row['LatLong']); 
-		$desc = $row['Descricao'];
-		$id = $row['ID_Area'];
-		array_push($coordenadas, array(
-			'coordenadas' => $rray,
-			'desc' => $desc,
-			'id' => $id
-
-			));
-		
-		
-
-		
-		
-
-
-		
-
-
-	}
 }
-
-echo json_encode($coordenadas,JSON_NUMERIC_CHECK);
-
-
-
-
 ?>
 
 
 
 
+
+          
+
+          
+
+          
+
+          
+
+
+        </body>
+        </html>
 
 
 
