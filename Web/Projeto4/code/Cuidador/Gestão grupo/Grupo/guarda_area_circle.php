@@ -16,14 +16,15 @@ if(isset($_POST['id']) && isset($_POST['info']) && isset($_POST['coordenadas']) 
 
 	$serialized_array = serialize($latlon); 
 
-	$tipo="Circle";
+	$tipo="circle";
+	$data=date("d/m/Y");
 
 
 
 	
-	$query = "INSERT INTO area_segura (ID_Area, ID_Monitorizado, LatLong, Descricao, ID_Cuidador, Tipo, Raio) VALUES (?,?,?,?,?,?,?)";
+	$query = "INSERT INTO area_segura (ID_Area, ID_Monitorizado, LatLong, Descricao, ID_Cuidador, Tipo, Raio, Data) VALUES (?,?,?,?,?,?,?,?)";
 	if ($stmt = $sqli_connection -> prepare($query)) {
-		$stmt -> bind_param("sssssss",$id, $monitorizado, $serialized_array, $desc, $cuidador, $tipo, $raio);
+		$stmt -> bind_param("ssssssss",$id, $monitorizado, $serialized_array, $desc, $cuidador, $tipo, $raio, $data);
 		$result = $stmt -> execute();
 		$stmt -> close();
 

@@ -23,60 +23,62 @@ $id_cuidador=$_SESSION['login_user_id'];
   </div>
 </div>
 
-  <div class="row">
-    <div class="col-md-12">       
-      <!-- /.box -->
-      <div class="box box-primary collapsed-box">
-        <div class="box-header">
-          <h3 class="box-title">Lista dos cuidadores</h3>
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-            </button>
-          </div>
+<div class="row">
+  <div class="col-md-12">       
+    <!-- /.box -->
+    <div class="box box-primary collapsed-box" id="tabela_areas">
+      <div class="box-header">
+        <h3 class="box-title">Lista das areas seguras</h3>
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
         </div>
-
-        <!-- /.box-header -->
-        <div class="box-body">
-          <?php include("Tabela_Dados.php"); ?>
-        </div>
-
-
       </div>
 
-    </div>
-    </div>
-    <!-- /.col -->
-
-    <!-- /.row -->
-  
-
-  <div class="row">
-    <div class="col-md-7">  
-      <div id="mapDiv" style="height: 500px;">
+      <!-- /.box-header -->
+      <div class="box-body">
+        <?php include("Tabela_Dados.php"); ?>
       </div>
+
+
     </div>
-    <div class="col-md-5">       
-      <div class="box box-widget widget-user-2">   
-        <div class="widget-user-header" style="background-color:#00619B;">
-          <h3 class="widget-user-username" style="color:white;">Detalhes</h3>
-        </div>
-        <div class="box-footer">
-          <ul class="nav nav-stacked">
-            <label id="aviso">Selecione uma área segura</label>
-            <li style="display:none;" id="label_nome"><label>Nome:</label><a><output id="nome_area"></output></a></li>
 
-            <li style="display:none;" id="label_autor"><label style="margin-top: 20px;">Autor:</label><a><output id="nome_autor"></output></a></li>
+  </div>
+</div>
+<!-- /.col -->
 
-            <li style="display:none;" id="label_botões"><a>
-              <button class="btn btn-danger"  style="display:none;" name="cancelar" id="cancelar" onclick="cancelar()" >Cancelar</button>
-              <button class="btn btn-danger"  name="apagar" id="apagar">Apagar</button>
-              <button class="btn btn-primary" id="editar" name="editar" onclick="editar_confirmar()" style="position: relative; float: right; margin-right: -5px">Editar</button>
-            </a>
-          </li>
-        </ul>
+<!-- /.row -->
+
+
+<div class="row">
+  <div class="col-md-7">  
+    <div id="mapDiv" style="height: 500px;">
+    </div>
+    
+    
+  </div>
+  <div class="col-md-5">       
+    <div class="box box-widget widget-user-2">   
+      <div class="widget-user-header" style="background-color:#00619B;">
+        <h3 class="widget-user-username" style="color:white;">Detalhes</h3>
       </div>
+      <div class="box-footer">
+        <ul class="nav nav-stacked">
+          <label id="aviso">Selecione uma área segura</label>
+          <li style="display:none;" id="label_nome"><label>Nome:</label><a><output id="nome_area"></output></a></li>
+
+          <li style="display:none;" id="label_autor"><label style="margin-top: 20px;">Autor:</label><a><output id="nome_autor"></output></a></li>
+
+          <li style="display:none;" id="label_botões"><a>
+            <button class="btn btn-danger"  style="display:none;" name="cancelar" id="cancelar" onclick="cancelar()" >Cancelar</button>
+            <button class="btn btn-danger"  name="apagar" id="apagar">Apagar</button>
+            <button class="btn btn-primary" id="editar" name="editar" onclick="editar_confirmar()" style="position: relative; float: right; margin-right: -5px">Editar</button>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
+</div>
 </div>
 
 <script src="https://cdn.klokantech.com/maptilerlayer/v1/index.js"></script>
@@ -85,6 +87,8 @@ $id_cuidador=$_SESSION['login_user_id'];
 
 
 <script>
+
+
 
   var area_antes;
   
@@ -218,6 +222,7 @@ $id_cuidador=$_SESSION['login_user_id'];
 
   var id_shape;
   var map;
+  var map2;
   var selectedShape;
   var poligonos;
   var circulos;
@@ -296,6 +301,7 @@ $id_cuidador=$_SESSION['login_user_id'];
 
     clearSelection();
     selectedShape = shape;
+    console.log(selectedShape);
     if(shape.type=="poly"){
       shape.setEditable(true);
     }else{
@@ -303,6 +309,8 @@ $id_cuidador=$_SESSION['login_user_id'];
     }
     
     id_shape=shape.get("id");
+
+
 
     
     
@@ -343,6 +351,14 @@ $id_cuidador=$_SESSION['login_user_id'];
       lastCenter=map.getCenter();
       google.maps.event.trigger(map, 'resize');
       map.setCenter(lastCenter);
+
+    });
+
+    $("a[href='#tab3']").on('shown.bs.tab', function () {
+
+      lastCenter=map2.getCenter();
+      google.maps.event.trigger(map2, 'resize');
+      map2.setCenter(lastCenter);
 
     });
 
@@ -411,6 +427,7 @@ function add(polygon) {
     setSelection(polygon, "true");
 
     var vertices = polygon.getPath();
+
     var contents = polygon.get("info");
     var bounds = new google.maps.LatLngBounds();
     
@@ -426,6 +443,7 @@ function add(polygon) {
     
     
     map.fitBounds(bounds);
+
 
   }); 
 
@@ -498,7 +516,7 @@ function addCircle(Circle) {
       url: "dados_mapa/circle/editar_centro.php",
       data: {"id":id_edit, "coordenadas":latlon},
       success:function(data){
-        console.log(data);
+
       }
 
     });
@@ -695,12 +713,23 @@ var circle;
 var circleArray=[];
 var current_id;
 
-
-map = new google.maps.Map(document.getElementById('mapDiv'), {
+var myOptions = {
   center: {lat: -33.8688, lng: 151.2195},
   zoom: 11,
   myLocationcontrol: true
+}
+
+map = new google.maps.Map(document.getElementById("mapDiv"), myOptions);
+
+map2 = new google.maps.Map(document.getElementById("map2Div"), myOptions);
+
+///////////////////////////////////////////Mapa 2 (localizações) ///////////////////////////////////////////////////////////////////////////
+$.getScript('Mapa_localização.js', function()
+{
+   
 });
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 var input = /** @type {!HTMLInputElement} */(
   document.getElementById('input-4'));
 
@@ -754,6 +783,7 @@ $.ajax({
       poligonos.setMap(map);
       add(poligonos);
       shapeArray.push(poligonos);
+      
 
 
 
@@ -776,7 +806,7 @@ $.ajax({
 
     for (var i = 0; i < result.length; i++) {
 
-      console.log(result[i].coordenadas);
+
 
 
       circulos = new google.maps.Circle({
@@ -811,6 +841,8 @@ $.ajax({
   }
 
 });
+
+
 
 
 
@@ -874,7 +906,7 @@ if (navigator.geolocation) {
       lat: position.coords.latitude,
       lng: position.coords.longitude
     };
-
+    console.log(pos);
     infoWindow.setPosition(pos);
     infoWindow.setContent('Localização encontrada.');
     map.setZoom(17);
@@ -887,6 +919,7 @@ if (navigator.geolocation) {
 
   handleLocationError(false, infoWindow, map.getCenter());
 }
+/////
 
 var drawingManager = new google.maps.drawing.DrawingManager({
 
@@ -985,6 +1018,8 @@ google.maps.event.addListener(map, 'click', clearSelection2);
 
 
 </script>
+
+
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog" role="document" >

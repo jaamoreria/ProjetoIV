@@ -10,9 +10,10 @@
 <table id="example2" class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th>Nome</th>
-      <th>Email</th>
-      <!-- <th style="text-align:right;">Opções</th> -->
+      <th>Descrição</th>
+      <th>Autor</th>
+      <th>Data de criação</th>
+      <th style="text-align:right;">Opções</th>
     </tr>
   </thead>
   <style>

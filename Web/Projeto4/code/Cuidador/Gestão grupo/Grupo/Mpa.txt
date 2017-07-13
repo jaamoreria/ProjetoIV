@@ -1,0 +1,92 @@
+
+var marker2 = new google.maps.Marker({
+  map: map2,
+  anchorPoint: new google.maps.Point(0, -29)
+});
+var infowindow2 = new google.maps.InfoWindow();
+var input2 = /** @type {!HTMLInputElement} */(
+  document.getElementById('input-5'));
+
+var types2 = document.getElementById('type-selector');
+
+map2.controls[google.maps.ControlPosition.TOP_LEFT].push(types2);
+
+var geoloccontrol2 = new klokantech.GeolocationControl(map2);
+
+
+var autocomplete2 = new google.maps.places.Autocomplete(input2);
+autocomplete2.bindTo('bounds', map);
+
+var infoWindow2 = new google.maps.InfoWindow({map: map2});
+
+
+
+if (navigator.geolocation) {
+
+  navigator.geolocation.getCurrentPosition(function(position) {
+    var pos = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    };
+
+    infoWindow2.setPosition(pos);
+    infoWindow2.setContent('Localização encontrada.');
+    map2.setZoom(17);
+    map2.setCenter(pos);
+  }, function() {
+    handleLocationError(true, infoWindow2, map2.getCenter());
+  });
+} else {
+
+
+  handleLocationError(false, infoWindow2, map2.getCenter());
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow2.setPosition(pos);
+  infoWindow2.setContent(browserHasGeolocation ?
+    'Error: The Geolocation service failed.' :
+    'Error: Your browser doesn\'t support geolocation.');
+}
+
+autocomplete2.addListener('place_changed', function() {
+  infowindow2.close();
+  marker2.setVisible(false);
+  var place2 = autocomplete2.getPlace();
+  if (!place2.geometry) {
+
+    window.alert("No details available for input: '" + place2.name + "'");
+    return;
+  }
+
+
+  if (place2.geometry.viewport) {
+    map2.fitBounds(place2.geometry.viewport);
+  } else {
+    map2.setCenter(place2.geometry.location);
+    map2.setZoom(45);  
+  }
+  marker2.setIcon(({
+    url: place2.icon,
+    size: new google.maps.Size(71, 71),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(17, 34),
+    scaledSize: new google.maps.Size(35, 35)
+  }));
+  marker2.setPosition(place2.geometry.location);
+  marker2.setVisible(true);
+
+  var address2 = '';
+  if (place2.address_components) {
+    address2 = [
+    (place2.address_components[0] && place2.address_components[0].short_name || ''),
+    (place2.address_components[1] && place2.address_components[1].short_name || ''),
+    (place2.address_components[2] && place2.address_components[2].short_name || '')
+    ].join(' ');
+  }
+
+  infowindow2.setContent('<div><strong>' + place2.name + '</strong><br>' + address2);
+  infowindow2.open(map2, marker2);
+  map2.setCenter(place2.geometry.location);
+  map2.setZoom(17);  
+});

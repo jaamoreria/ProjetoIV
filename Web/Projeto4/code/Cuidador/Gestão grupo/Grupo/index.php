@@ -194,6 +194,8 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
                 <ul class="nav nav-tabs">
                   <li class="active"><a href="#activity" data-toggle="tab">Cuidadores atribuidos</a></li>
                   <li><a href="#tab2" data-toggle="tab">Áreas seguras</a></li>
+                  <li><a href="#tab3" data-toggle="tab">Localização</a></li>
+                  <li><a href="#tab4" data-toggle="tab">Alertas</a></li>
 
                 </ul>
                 <div class="tab-content">
@@ -208,7 +210,12 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
 
                   </div>
 
-                  
+                  <div id="tab3" class="tab-pane fade">
+                    
+                    <?php include("mapa_localização.php"); ?>
+                    
+
+                  </div>
 
                   <div id="tab2" class="tab-pane fade">
                     
@@ -216,6 +223,8 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
                     
 
                   </div>
+
+                  
 
 
                   
