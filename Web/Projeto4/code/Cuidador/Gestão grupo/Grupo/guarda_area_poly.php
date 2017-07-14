@@ -16,7 +16,8 @@ if(isset($_POST['id']) && isset($_POST['info']) && isset($_POST['coordenadas']) 
 	$serialized_array = serialize($latlon); 
 
 	$tipo="poly";
-	$data=date("d/m/Y");
+	//$data=date("d/m/Y");
+	$data = date('Y-m-d G:i:s');
 
 
 

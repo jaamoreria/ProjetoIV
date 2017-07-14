@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
   <link rel="stylesheet" href="../../sco-js/css/scojs.css">
+  <link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">
 
  
 

@@ -377,6 +377,8 @@ $id_cuidador=$_SESSION['login_user_id'];
 
   function ShowGoogleMap() {
 
+
+
 // function add(polygon) {
 
 
@@ -458,6 +460,8 @@ function add(polygon) {
       latlon.push(item);
 
     });
+
+
 
     $.ajax({
       type: 'POST',
@@ -584,7 +588,7 @@ function abreModalPoly(poly, current_id) {
 
 
     });
-    
+    console.log(latlon);
     add(poly);
     var id_monitorizado = '<?php echo $id; ?>';
     var id_cuidador = '<?php echo $id_cuidador; ?>';
