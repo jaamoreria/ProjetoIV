@@ -391,6 +391,7 @@
         this.container.find('.applyBtn, .cancelBtn').addClass(this.buttonClasses);
         if (this.applyClass.length)
             this.container.find('.applyBtn').addClass(this.applyClass);
+			this.container.find('.applyBtn').attr('id', 'clicado');
         if (this.cancelClass.length)
             this.container.find('.cancelBtn').addClass(this.cancelClass);
         this.container.find('.applyBtn').html(this.locale.applyLabel);

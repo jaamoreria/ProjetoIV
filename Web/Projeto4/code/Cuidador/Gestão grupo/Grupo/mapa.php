@@ -154,6 +154,8 @@ $id_cuidador=$_SESSION['login_user_id'];
 
           });
 
+
+
         }
 
       });
@@ -207,7 +209,7 @@ $id_cuidador=$_SESSION['login_user_id'];
           $('#label_nome').hide(); 
           $('#label_autor').hide(); 
           $('#aviso').show();
-
+          $.scojs_message('Apagado com sucesso', $.scojs_message.TYPE_OK); 
         }
       });
     }
@@ -301,7 +303,7 @@ $id_cuidador=$_SESSION['login_user_id'];
 
     clearSelection();
     selectedShape = shape;
-    console.log(selectedShape);
+    
     if(shape.type=="poly"){
       shape.setEditable(true);
     }else{
@@ -467,6 +469,11 @@ function add(polygon) {
       type: 'POST',
       url: "dados_mapa/editar_shape.php",
       data: {"id":id_edit, "coordenadas":latlon},
+      success:function(data){
+          $.scojs_message('Área editada com sucesso', $.scojs_message.TYPE_OK);  
+        }
+
+      
 
     });
 
@@ -588,7 +595,7 @@ function abreModalPoly(poly, current_id) {
 
 
     });
-    console.log(latlon);
+    
     add(poly);
     var id_monitorizado = '<?php echo $id; ?>';
     var id_cuidador = '<?php echo $id_cuidador; ?>';
@@ -910,7 +917,7 @@ if (navigator.geolocation) {
       lat: position.coords.latitude,
       lng: position.coords.longitude
     };
-    console.log(pos);
+    
     infoWindow.setPosition(pos);
     infoWindow.setContent('Localização encontrada.');
     map.setZoom(17);
