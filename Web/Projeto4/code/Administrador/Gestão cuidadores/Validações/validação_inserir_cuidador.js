@@ -355,6 +355,7 @@ $("#sub").click(function(e) {
 
     resultado="true";
 
+
     
     var url = "BD_Inserir_Cuidador.php"; 
 
@@ -388,7 +389,7 @@ $("#sub").click(function(e) {
        //$('.modal-backdrop').remove();
        */
        
-       //location.reload();
+       location.reload();
 
        
        
@@ -403,7 +404,7 @@ $("#sub").click(function(e) {
 
 
   } else {
-
+    
     resultado="false"; // isto permite controlar o pace.js, caso esteja true, é utilizado o método .start do "Gestão cuidadores/index.php"
 
   }

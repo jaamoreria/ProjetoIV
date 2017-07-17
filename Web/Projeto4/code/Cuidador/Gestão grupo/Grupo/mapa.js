@@ -1,109 +1,4 @@
-<?php 
-
-
-$id=$_SESSION['monitorizado'];
-$id_cuidador=$_SESSION['login_user_id'];
-
-
-
-?>
-
-<link rel="stylesheet" type="text/css" href="../../../../css/set1.css" />
-<div class="row">
-
-  <div class="col-md-12"> 
-
-    <span class="input input--hoshi" style="margin-top: -5px !important;">
-      <input class="input__field input__field--hoshi" type="text" id="input-4" placeholder="">
-      <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
-        <span class="input__label-content input__label-content--hoshi">Localização</span>
-      </label>
-    </span>
-
-
-    
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">       
-    <!-- /.box -->
-    <div class="box box-primary collapsed-box" id="tabela_areas">
-      <div class="box-header">
-        <h3 class="box-title">Lista das areas seguras</h3>
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- /.box-header -->
-      <div class="box-body">
-        <?php include("Tabela_Dados.php"); ?>
-      </div>
-
-
-    </div>
-
-  </div>
-</div>
-<!-- /.col -->
-
-<!-- /.row -->
-
-
-<div class="row">
-  <div class="col-md-7">  
-    <div id="mapDiv" style="height: 500px;">
-    </div>
-    
-    
-  </div>
-  <div class="col-md-5">       
-    <div class="box box-widget widget-user-2">   
-      <div class="widget-user-header" style="background-color:#00619B;">
-        <h3 class="widget-user-username" style="color:white;">Detalhes</h3>
-      </div>
-      <div class="box-footer">
-        <ul class="nav nav-stacked">
-          <label id="aviso">Selecione uma área segura</label>
-          <li style="display:none;" id="label_nome"><label>Nome:</label><a><output id="nome_area"></output></a></li>
-
-          <li style="display:none;" id="label_autor"><label style="margin-top: 20px;">Autor:</label><a><output id="nome_autor"></output></a></li>
-
-          <li style="display:none;" id="label_botões"><a>
-            <button class="btn btn-danger"  style="display:none;" name="cancelar" id="cancelar" onclick="cancelar()" >Cancelar</button>
-            <button class="btn btn-danger"  name="apagar" id="apagar">Apagar</button>
-            <button class="btn btn-primary" id="editar" name="editar" onclick="editar_confirmar()" style="position: relative; float: right; margin-right: -5px">Editar</button>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-</div>
-<?php
-include("controlo_areas.php");
-
-?>
-
-<script src="https://cdn.klokantech.com/maptilerlayer/v1/index.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0sMN4oZv0arXqQMn53OqpN5O2s_WjqzM&libraries=places,drawing&callback=ShowGoogleMap"></script>
-
-
-
-<script>
-var marker3="";
-var infowindow3="";
-var permissões = '<?php echo $permissões_cuidador; ?>';
-
-
-if(permissões=="Não"){
-   $('#editar').hide();
-    $('#apagar').hide();
-}
-
-  var area_antes;
+var area_antes;
   
   function editar_confirmar() {
 
@@ -944,8 +839,8 @@ if (navigator.geolocation) {
   handleLocationError(false, infoWindow, map.getCenter());
 }
 /////
-if(permissões!="Não"){
-  var drawingManager = new google.maps.drawing.DrawingManager({
+
+var drawingManager = new google.maps.drawing.DrawingManager({
 
 
 
@@ -962,7 +857,7 @@ if(permissões!="Não"){
   }
 });
 
-  drawingManager.setMap(map);
+drawingManager.setMap(map);
 
 google.maps.event.addListener(drawingManager, 'polygoncomplete', function (polygon) {
 
@@ -1015,10 +910,6 @@ $.ajax({
 
 });
 
-}
-
-
-
 
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -1043,65 +934,3 @@ google.maps.event.addListener(map, 'click', clearSelection2);
 
 
 }
-
-
-</script>
-
-
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog" role="document" >
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModal">Detalhes</h4>
-      </div>
-      <div class="modal-body">
-        <form id="er" method="POST" action="" enctype="multipart/form-data" autocomplete="off">
-          <div class="form-group">
-            <label for="recipient-nome" class="control-label">Nome:</label>
-            <input name="nome" type="text" class="form-control" id="r" required="">
-          </div>
-          
-          <button type="button" name="a" id="can" class="btn btn-danger">Cancelar</button>
-          <button type="submit" name="a" id="sub" class="btn btn-success">Adicionar</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-</script>
-<?php include("source_script.php") ?>
-<script>
-
-
-  $('#example2').DataTable( {
-    "language": {
-      "lengthMenu": "Mostar _MENU_ cuidadores por página",
-      "zeroRecords": "Nenhum resultado",
-      "info": "Pagina de _PAGE_ de _PAGES_",
-      "infoEmpty": "",
-      "infoFiltered": "(Filtrado _MAX_ total de cuidadores)",
-      "oPaginate": {
-        "sFirst":    "Primeiro",
-        "sLast":    "Último",
-        "sNext":    "Seguinte",
-        "sPrevious": "Anterior",
-        "bDestroy": true,
-
-      },
-
-      "sLoadingRecords": "Carregar...",
-      "sSearch":        "Procurar:"
-    }
-
-  } );
-
-  
-
-
-
-
-
-</script>

@@ -13,7 +13,8 @@ $id_cuidador=$_SESSION['login_user_id'];
 
     <span class="input input--hoshi" style="margin-top: -5px !important;">
       <input class="input__field input__field--hoshi" type="text" id="input-5" placeholder="">
-      <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+      <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-5">
+      <span class="input__label-content input__label-content--hoshi">Localização</span>
         
       </label>
     </span>
@@ -21,7 +22,7 @@ $id_cuidador=$_SESSION['login_user_id'];
     
   </div>
   <div class="col-md-2" style="margin-top:25px;"> 
-    <button class="btn fa-map-marker btn-primary">Localização</button>
+    <button class="btn btn-default" style="background-color: #fff" onclick="Localização()">Localização monitorizado</button>
   </div>
   <div class="col-md-4">
 

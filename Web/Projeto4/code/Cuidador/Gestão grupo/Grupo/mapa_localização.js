@@ -1,3 +1,57 @@
+function Localização() {
+
+
+  $.ajax({
+    type: 'POST',
+    url: "localizacao_monitorizado.php",
+
+    data:{"id":id_monitorizado},
+    success:function(data){
+
+
+     var result=eval(data);
+
+     
+     if(marker3!=""){
+       marker3.setMap(null);
+
+     }
+
+     if(flightPath!=""){
+      flightPath.setMap(null);
+     }
+
+     // 
+     // infowindow3.setMap(null);
+      // infoWindow3 = null;
+
+      marker3 = new google.maps.Marker({
+        position: result[0],
+        map: map2,
+        title: 'Hello World!'
+      });
+      marker3.setMap(map2);
+      
+      infowindow3 = new google.maps.InfoWindow({
+        content:"O monitorizado"
+      });
+
+      infowindow3.open(map2,marker3);
+      var latLng = marker3.getPosition(); // returns LatLng object
+      map2.setCenter(latLng);
+
+      // var marker3 = new google.maps.Marker({
+      //   position: result[0],
+      //   map: map2,
+      //   title: 'Hello World!',
+      //   center: result[0]
+      // });
+      
+      
+    }
+
+  });
+}
 
 var marker2 = new google.maps.Marker({
   map: map2,
@@ -90,7 +144,7 @@ if (navigator.geolocation) {
     infoWindow2.setPosition(pos2);
     infoWindow2.setContent('Localização encontrada.');
     map2.setZoom(17);
-    map2.setCenter(pos2);
+    
   }, function() {
     handleLocationError(true, infoWindow2, map2.getCenter());
   });
@@ -137,16 +191,18 @@ $("#clicado").click(function(){
     data:{"id":id_monitorizado, "data_inicio":data_inicio, "data_fim":data_fim, "hora_inicio": hora_inicio, "hora_fim": hora_fim},
     success:function(data){
 
-      
+
       var result=eval(data);
 
       if(flightPath!=""){
         flightPath.setMap(null);
       }
 
-
+      if(marker3!=""){
+        marker3.setMap(null);
+      }
       
-
+      
 
 //           var flightPlanCoordinates = [
 // {lat:41.664316, lng:-8.489436},
@@ -155,26 +211,26 @@ $("#clicado").click(function(){
 // {lat:41.664730, lng:-8.489216}
 // ];
 if(result!=""){
-flightPath = new google.maps.Polyline({
-  path: result,
-  geodesic: true,
-  strokeColor: '#FF0000',
-  strokeOpacity: 2.0,
-  strokeWeight: 4
-});
+  flightPath = new google.maps.Polyline({
+    path: result,
+    geodesic: true,
+    strokeColor: '#FF0000',
+    strokeOpacity: 2.0,
+    strokeWeight: 4
+  });
 
-function zoomToObject(obj){
+  function zoomToObject(obj){
 
-  var bounds2 = new google.maps.LatLngBounds();
-  var points = obj.getPath().getArray();
+    var bounds2 = new google.maps.LatLngBounds();
+    var points = obj.getPath().getArray();
 
-  for (var n = 0; n < points.length ; n++){
-    bounds2.extend(points[n]);
-  }
+    for (var n = 0; n < points.length ; n++){
+      bounds2.extend(points[n]);
+    }
 
-  flightPath.setMap(map2);
+    flightPath.setMap(map2);
 
-  var centro = bounds2.getCenter();
+    var centro = bounds2.getCenter();
 
 
   //loc = new google.maps.LatLng(centro);
@@ -202,9 +258,9 @@ function zoomToObject(obj){
 
 
   zoomToObject(flightPath);
-  }else{
-      $.scojs_message('Sem dados para a data e hora selecionada', $.scojs_message.TYPE_ERROR);
-  }
+}else{
+  $.scojs_message('Sem dados para a data e hora selecionada', $.scojs_message.TYPE_ERROR);
+}
 }
 
 });
