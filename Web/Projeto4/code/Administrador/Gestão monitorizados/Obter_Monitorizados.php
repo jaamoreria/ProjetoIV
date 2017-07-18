@@ -16,14 +16,15 @@
   $dados = mysqli_query($sqli_connection,$query_obterDados);
   
   while($monitorizado = mysqli_fetch_array($dados)){
+    
 
     ?>
     <tr>
-      <th><?php echo $monitorizado['Nome']; ?></th>
-      <th><?php echo $monitorizado['IMEI']; ?></th>
-      <th><?php echo $monitorizado['Descricao']; ?></th>
-      <th><?php echo $monitorizado['Data_Nascimento']; ?></th>
-      <th><?php echo $monitorizado['Data_Admissao']; ?></th>
+      <td><?php echo $monitorizado['Nome']; ?></td>
+      <td><?php echo $monitorizado['IMEI']; ?></td>
+      <td><?php echo $monitorizado['Descricao']; ?></td>
+      <td><?php echo $monitorizado['Data_Nascimento']; ?></td>
+      <td><?php echo $monitorizado['Data_Admissao']; ?></td>
     </td>
     <td>
       <span class="btn glyphicon glyphicon-trash"  style="position: relative; float: right; margin-right: -5px"></span>

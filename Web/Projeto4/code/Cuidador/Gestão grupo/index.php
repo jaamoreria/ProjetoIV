@@ -56,31 +56,24 @@ $id_cuidador= $_SESSION['login_user_id'];
               <li class="dropdown messages-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-envelope-o"></i>
-                  <span class="label label-success">4</span>
+                  <span class="label label-success" id="numero"></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">You have 4 messages</li>
+                  <li class="header" id="numero_alertas">Tem zero alertas</li>
                   <li>
                     <!-- inner menu: contains the actual data -->
-                    <ul class="menu">
-                      <li><!-- start message -->
-                        <a href="#">
-                          <div class="pull-left">
-                            <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                          </div>
-                          <h4>
-                            Support Team
-                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                          </h4>
-                          <p>Why not buy a new awesome theme?</p>
-                        </a>
+                    <ul class="menu" id="alerta">
+                      <li id="criar"><!-- start message -->
+
+                        
                       </li>
                       <!-- end message -->
                     </ul>
                   </li>
-                  <li class="footer"><a href="#">See All Messages</a></li>
+                  <li class="footer"><a href="../Gestão_alertas.php">Ver todos os alertas</a></li>
                 </ul>
               </li>
+
               <!-- Notifications: style can be found in dropdown.less -->
               
               <!-- Tasks: style can be found in dropdown.less -->
@@ -88,29 +81,22 @@ $id_cuidador= $_SESSION['login_user_id'];
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Administrador</span>
+                  <?php echo '<img class="user-image" alt="User Image" src="data:image/jpeg;base64,' . base64_encode( $_SESSION['login_user_imagem'] ) . '" />'; ?>
+                  <span class="hidden-xs"><?php echo $_SESSION['login_user_nome']; ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="vazio.jpg" class="img-circle" alt="User Image">
+                    <?php echo '<img class="img-circle" alt="User Image" src="data:image/jpeg;base64,' . base64_encode( $_SESSION['login_user_imagem'] ) . '" />'; ?>
 
                     <p>
                       <?php echo $_SESSION['login_user_tipo']; ?>
                     </p>
                   </li>
-                  <!-- Menu Body -->
-                  <li class="user-body">
-                    <div class="row">
-
-                    </div>
-                    <!-- /.row -->
-                  </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-
+                      <a href="../perfil/perfil.php" class="btn btn-default btn-flat">Perfil</a>
                     </div>
                     <div class="pull-right">
                       <a href="../../../logout.php" class="btn btn-default btn-flat">Logout</a>
@@ -119,9 +105,7 @@ $id_cuidador= $_SESSION['login_user_id'];
                 </ul>
               </li>
               <!-- Control Sidebar Toggle Button -->
-              <li>
-                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-              </li>
+              
             </ul>
           </div>
         </nav>
@@ -134,25 +118,7 @@ $id_cuidador= $_SESSION['login_user_id'];
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- Sidebar user panel -->
-          <div class="user-panel">
-            <div class="pull-left image">
-              <img src="vazio.jpg" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-              <p>Administrador</p>
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-          </div>
-          <!-- search form -->
-          <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-          </form>
+          
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
@@ -166,6 +132,7 @@ $id_cuidador= $_SESSION['login_user_id'];
               </a>
               <ul class="treeview-menu">
                 <li class="active"><a href="index.php"><i class="fa fa-circle-o"></i> Gestão de grupos</a></li>
+                <li><a href="../Gestão_alertas.php"><i class="fa fa-circle-o"></i>Gestão alertas</a></li>
               </ul>
             </li>
 
@@ -185,7 +152,7 @@ $id_cuidador= $_SESSION['login_user_id'];
               <!-- /.box -->
               <div class="box box-primary">
                 <div class="box-header">
-                  <h3 class="box-title">Lista dos grupos</h3>
+                  <h3 class="box-title">Lista dos grupos por monitoridados</h3>
                 </div>
                 <!-- /.box-header -->
 
@@ -415,11 +382,11 @@ $id_cuidador= $_SESSION['login_user_id'];
 
   $('#example1').DataTable( {
     "language": {
-      "lengthMenu": "Mostar _MENU_ utilizadores por página",
+      "lengthMenu": "Mostar _MENU_ monitorizados por página",
       "zeroRecords": "Nenhum resultado",
       "info": "Pagina de _PAGE_ de _PAGES_",
       "infoEmpty": "",
-      "infoFiltered": "(Filtrado _MAX_ total de utilizadores)",
+      "infoFiltered": "(Filtrado _MAX_ total de monitorizados)",
       "oPaginate": {
         "sFirst":    "Primeiro",
         "sLast":    "Último",
@@ -442,6 +409,40 @@ $id_cuidador= $_SESSION['login_user_id'];
 </script>
 <script src="../../../plugins/pace/pace.min.js"></script>
 <script type="text/javascript">
+
+
+
+var id_cuidador = '<?php echo $id_cuidador; ?>';
+setInterval(function() {
+    //call $.ajax here
+
+  $.ajax({
+    type: 'POST',
+    url: "../Alertas/alertas_aviso.php", //Cuidador\Alertas
+    data:{"id": id_cuidador},
+    success:function(data){
+      $("#criar").remove();
+      $("#alerta").append("<li id='criar'></a>");
+     
+     var result=eval(data);
+     $('#numero_alertas').text("Tem "+result.length+" alertas pendentes");
+     $('#numero').text(result.length);
+
+     for (var i = 0; i < result.length; i++) {
+
+
+      
+      $("#criar").append("<a id=a"+result[i].id+"></a>");
+      $("#a"+result[i].id).append("<h4 id=h"+result[i].id+">Alerta</h4>");
+      $("#h"+result[i].id).append("<small><i class='fa fa-clock-o'></i>"+result[i].data+"</small>");
+      $("#a"+result[i].id).append("<p>"+result[i].nome+" saiu da área segura</p>");
+
+
+     }
+   }
+ });
+
+  }, 2000); //2 seconds
 
   $('.ajax').click(function(){
     if(resultado=="true"){

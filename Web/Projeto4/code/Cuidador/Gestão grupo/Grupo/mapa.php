@@ -1078,11 +1078,11 @@ google.maps.event.addListener(map, 'click', clearSelection2);
 
   $('#example2').DataTable( {
     "language": {
-      "lengthMenu": "Mostar _MENU_ cuidadores por página",
+      "lengthMenu": "Mostar _MENU_ áreas por página",
       "zeroRecords": "Nenhum resultado",
       "info": "Pagina de _PAGE_ de _PAGES_",
       "infoEmpty": "",
-      "infoFiltered": "(Filtrado _MAX_ total de cuidadores)",
+      "infoFiltered": "(Filtrado _MAX_ total de áreas)",
       "oPaginate": {
         "sFirst":    "Primeiro",
         "sLast":    "Último",

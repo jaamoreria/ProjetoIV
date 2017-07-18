@@ -16,9 +16,9 @@ if(isset($_POST['id']) && isset($_POST['data_inicio']) && isset($_POST['data_fim
 	$data_fim=$_POST['data_fim'];
 	$hora_inicio=$_POST['hora_inicio'];
 	$hora_fim=$_POST['hora_fim'];
-
 	$inicio = date("Y-m-d", strtotime($data_inicio))." ".$hora_inicio;
-	$fim = date("Y-m-d", strtotime($data_fim))." ".$hora_fim;
+	$fim = date("Y-m-d", strtotime($data_fim))." ".$hora_fim;;
+
 
 
 

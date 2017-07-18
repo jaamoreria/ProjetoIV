@@ -17,11 +17,11 @@
 
     ?>
     <tr>
-      <th><?php echo $cuidador['Nome']; ?></th>
-      <th><?php echo $cuidador['Username']; ?></th>
-      <th><?php echo $cuidador['Email']; ?></th>
-      <th><?php echo $cuidador['Telemovel']; ?></th>
-      <th><?php echo $cuidador['Data_Admissao']; ?></th>
+      <td><?php echo $cuidador['Nome']; ?></td>
+      <td><?php echo $cuidador['Username']; ?></td>
+      <td><?php echo $cuidador['Email']; ?></td>
+      <td><?php echo $cuidador['Telemovel']; ?></td>
+      <td><?php echo $cuidador['Data_Admissao']; ?></td>
     </td>
     <td>
       <span class="btn glyphicon glyphicon-trash"  style="position: relative; float: right; margin-right: -5px"></span>

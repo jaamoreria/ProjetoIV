@@ -1,3 +1,9 @@
+<style>
+      td {
+        font-weight: normal;
+      }
+    </style>
+
 <div class="box-body" id="dados">
   <table id="example1" class="table table-bordered table-striped">
     <thead>

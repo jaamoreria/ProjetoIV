@@ -1,5 +1,5 @@
 <?php 
-include("../../../BD.php");
+include("../../BD.php");
 session_start();
 if(!isset($_SESSION['login_user_tipo']))
 {
@@ -7,8 +7,8 @@ if(!isset($_SESSION['login_user_tipo']))
 
 }
 
-if($_SESSION['login_user_tipo']=='Administrador'){
-
+if($_SESSION['login_user_tipo']=='Cuidador'){
+  $id_cuidador= $_SESSION['login_user_id'];
 
 
   ?>
@@ -18,7 +18,7 @@ if($_SESSION['login_user_tipo']=='Administrador'){
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Gestão dos grupos-Escolha</title>
+    <title>Grupo-Lista</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?php include("source_link.php"); ?> 
@@ -34,7 +34,7 @@ if($_SESSION['login_user_tipo']=='Administrador'){
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="../index.php" class="logo">
+        <a href="index.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>A</b>LZ</span>
           <!-- logo for regular state and mobile devices -->
@@ -53,42 +53,58 @@ if($_SESSION['login_user_tipo']=='Administrador'){
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
-              
+              <li class="dropdown messages-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-envelope-o"></i>
+                  <span class="label label-success" id="numero"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header" id="numero_alertas">Tem zero alertas</li>
+                  <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu" id="alerta">
+                      <li id="criar"><!-- start message -->
+
+                        
+                      </li>
+                      <!-- end message -->
+                    </ul>
+                  </li>
+                  <li class="footer"><a href="Gestão_alertas.php">Ver todos os alertas</a></li>
+                </ul>
+              </li>
               <!-- Notifications: style can be found in dropdown.less -->
-              
-              
+
+              <!-- Tasks: style can be found in dropdown.less -->
+
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="vazio.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Administrador</span>
+                  <?php echo '<img class="user-image" alt="User Image" src="data:image/jpeg;base64,' . base64_encode( $_SESSION['login_user_imagem'] ) . '" />'; ?>
+                  <span class="hidden-xs"><?php echo $_SESSION['login_user_nome']; ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="vazio.jpg" class="img-circle" alt="User Image">
-                  </li>
-                  <!-- Menu Body -->
-                  <li class="user-body">
-                    <div class="row">
-                      
-                    <!-- /.row -->
+                    <?php echo '<img class="img-circle" alt="User Image" src="data:image/jpeg;base64,' . base64_encode( $_SESSION['login_user_imagem'] ) . '" />'; ?>
+
+                    <p>
+                      <?php echo $_SESSION['login_user_tipo']; ?>
+                    </p>
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                     
+                      <a href="perfil/perfil.php" class="btn btn-default btn-flat">Perfil</a>
                     </div>
                     <div class="pull-right">
-                      <a href="../../../logout.php" class="btn btn-default btn-flat">Logout</a>
+                      <a href="../../logout.php" class="btn btn-default btn-flat">Logout</a>
                     </div>
                   </li>
                 </ul>
               </li>
               <!-- Control Sidebar Toggle Button -->
-              <li>
-                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-              </li>
+              
             </ul>
           </div>
         </nav>
@@ -106,17 +122,16 @@ if($_SESSION['login_user_tipo']=='Administrador'){
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">Menu</li>
-            <li class="treeview">
+            <li class="active treeview">
               <a href="#">
                 <i class="fa fa-edit"></i> <span>Gestão de informações</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
-              <ul class=" active treeview-menu">
-                <li><a href="../Gestão cuidadores/index.php"><i class="fa fa-circle-o"></i> Gestão de cuidadores</a></li>
-                <li><a href="../Gestão monitorizados/index.php"><i class="fa fa-circle-o"></i> Gestão de monitorizados</a></li>
-                <li class="active"><a href="index.php"><i class="fa fa-circle-o"></i> Gestão de grupos</a></li>
+              <ul class="treeview-menu">
+                <li><a href="Gestão grupo/"><i class="fa fa-circle-o"></i> Gestão de grupos</a></li>
+                <li class="active"><a href="Gestão_alertas.php"><i class="fa fa-circle-o"></i>Gestão alertas</a></li>
               </ul>
             </li>
 
@@ -136,11 +151,11 @@ if($_SESSION['login_user_tipo']=='Administrador'){
               <!-- /.box -->
               <div class="box box-primary">
                 <div class="box-header">
-                  <h3 class="box-title">Lista dos grupos</h3>
+                  <h3 class="box-title">Lista dos alertas</h3>
                 </div>
                 <!-- /.box-header -->
-                
-                <?php include("Tabela_Dados_Grupos.php"); ?>
+
+                <?php include("Alertas/Tabela_Dados_alertas.php"); ?>
 
               </div>
 
@@ -366,11 +381,11 @@ if($_SESSION['login_user_tipo']=='Administrador'){
 
   $('#example1').DataTable( {
     "language": {
-      "lengthMenu": "Mostar _MENU_ monitorizados por página",
+      "lengthMenu": "Mostar _MENU_ alertas por página",
       "zeroRecords": "Nenhum resultado",
       "info": "Pagina de _PAGE_ de _PAGES_",
       "infoEmpty": "",
-      "infoFiltered": "(Filtrado _MAX_ total de monitorizados)",
+      "infoFiltered": "(Filtrado _MAX_ total de alertas)",
       "oPaginate": {
         "sFirst":    "Primeiro",
         "sLast":    "Último",
@@ -391,15 +406,49 @@ if($_SESSION['login_user_tipo']=='Administrador'){
 
 
 </script>
-<script src="../../../plugins/pace/pace.min.js"></script>
+<script src="../../plugins/pace/pace.min.js"></script>
 <script type="text/javascript">
-  
-  $('.ajax').click(function(){
-    if(resultado=="true"){
-      Pace.restart();
-    }
-  });
-  
+var id_cuidador = '<?php echo $id_cuidador; ?>';
+setInterval(function() {
+    //call $.ajax here
+
+  $.ajax({
+    type: 'POST',
+    url: "Alertas/alertas_aviso.php", //Cuidador\Alertas
+    data:{"id": id_cuidador},
+    success:function(data){
+      $("#criar").remove();
+      $("#alerta").append("<li id='criar'></a>");
+     
+     var result=eval(data);
+     $('#numero_alertas').text("Tem "+result.length+" alertas pendentes");
+     $('#numero').text(result.length);
+
+     for (var i = 0; i < result.length; i++) {
+
+
+      
+      $("#criar").append("<a id=a"+result[i].id+"></a>");
+      $("#a"+result[i].id).append("<h4 id=h"+result[i].id+">Alerta</h4>");
+      $("#h"+result[i].id).append("<small><i class='fa fa-clock-o'></i>"+result[i].data+"</small>");
+      $("#a"+result[i].id).append("<p>"+result[i].nome+" saiu da área segura</p>");
+
+
+     }
+   }
+ });
+
+  }, 2000); //2 seconds
+
+
+
+
+$('.ajax').click(function(){
+  if(resultado=="true"){
+    Pace.restart();
+  }
+});
+
 </script>
 
 </body>

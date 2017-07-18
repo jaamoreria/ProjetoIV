@@ -14,7 +14,7 @@
       <th>Email</th>
       <th>Telemóvel</th>
       <th>Cuidador principal</th>
-      <th>Definir àreas</th>
+      <th>Definir áreas</th>
       <th>Aviso preferencial(SMS/Email)</th>
       <th style="text-align:right;">Opções</th>
     </tr>

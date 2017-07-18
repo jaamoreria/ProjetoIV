@@ -12,7 +12,7 @@ if(!isset($_SESSION['login_user_tipo']))
 
 if($_SESSION['login_user_tipo']=='Cuidador'){
 
-
+  $id_cuidador=$_SESSION['login_user_id'];
 
   ?>
 
@@ -60,31 +60,24 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
               <li class="dropdown messages-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-envelope-o"></i>
-                  <span class="label label-success">4</span>
+                  <span class="label label-success" id="numero"></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">You have 4 messages</li>
+                  <li class="header" id="numero_alertas">Tem zero alertas</li>
                   <li>
                     <!-- inner menu: contains the actual data -->
-                    <ul class="menu">
-                      <li><!-- start message -->
-                        <a href="#">
-                          <div class="pull-left">
-                            <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                          </div>
-                          <h4>
-                            Support Team
-                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                          </h4>
-                          <p>Why not buy a new awesome theme?</p>
-                        </a>
+                    <ul class="menu" id="alerta">
+                      <li id="criar"><!-- start message -->
+
+
                       </li>
                       <!-- end message -->
                     </ul>
                   </li>
-                  <li class="footer"><a href="#">See All Messages</a></li>
+                  <li class="footer"><a href="../../Gestão_alertas.php">Ver todos os alertas</a></li>
                 </ul>
               </li>
+
               <!-- Notifications: style can be found in dropdown.less -->
               
               <!-- Tasks: style can be found in dropdown.less -->
@@ -92,13 +85,13 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="../vazio.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Administrador</span>
+                  <?php echo '<img class="user-image" alt="User Image" src="data:image/jpeg;base64,' . base64_encode( $_SESSION['login_user_imagem'] ) . '" />'; ?>
+                  <span class="hidden-xs"><?php echo $_SESSION['login_user_nome']; ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="../vazio.jpg" class="img-circle" alt="User Image">
+                    <?php echo '<img class="img-circle" alt="User Image" src="data:image/jpeg;base64,' . base64_encode( $_SESSION['login_user_imagem'] ) . '" />'; ?>
 
                     <p>
                       <?php echo $_SESSION['login_user_tipo']; ?>
@@ -106,16 +99,18 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="../../perfil/perfil.php" class="btn btn-default btn-flat">Perfil</a>
+                    </div>
                     <div class="pull-right">
                       <a href="../../../../logout.php" class="btn btn-default btn-flat">Logout</a>
                     </div>
                   </li>
                 </ul>
               </li>
+              
               <!-- Control Sidebar Toggle Button -->
-              <li>
-                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-              </li>
+              
             </ul>
           </div>
         </nav>
@@ -128,25 +123,7 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- Sidebar user panel -->
-          <div class="user-panel">
-            <div class="pull-left image">
-              <img src="../vazio.jpg" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-              <p>Administrador</p>
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-          </div>
-          <!-- search form -->
-          <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-          </form>
+
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
@@ -160,6 +137,7 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
               </a>
               <ul class="treeview-menu">
                 <li class="active"><a href="../index.php"><i class="fa fa-circle-o"></i> Gestão de grupos</a></li>
+                <li><a href="../../Gestão_alertas.php"><i class="fa fa-circle-o"></i>Gestão alertas</a></li>
               </ul>
             </li>
 
@@ -182,6 +160,23 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
               <!-- /.widget-user-image -->
               <h3 class="widget-user-username" id="nome_monitorizado"></h3>
               <h5 class="widget-user-desc">Monitorizado</h5>
+              <?php include("principal.php"); 
+              if($principal=="Sim"){
+                //include("dados_monitorizados.php");
+                //include("editar_monitorizado.php");
+                // <span class="btn fa fa-gears pull-right" style="margin-top: -41px;" data-toggle="modal" data-target="#ModalEditMonitorizado"></span>
+                ?>
+
+
+
+
+                
+
+                <?php
+              }
+              ?>
+
+              
             </div>
           </div>
           <div class="row">
@@ -195,7 +190,7 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
                   <li class="active"><a href="#activity" data-toggle="tab">Cuidadores atribuidos</a></li>
                   <li><a href="#tab2" data-toggle="tab">Áreas seguras</a></li>
                   <li><a href="#tab3" data-toggle="tab">Localização</a></li>
-                  <li><a href="#tab4" data-toggle="tab">Alertas</a></li>
+                  <li><a href="#tab4" data-toggle="tab">Histórico de Alertas</a></li>
 
                 </ul>
                 <div class="tab-content">
@@ -211,18 +206,27 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
                   </div>
 
                   <div id="tab3" class="tab-pane fade">
-                    
+
                     <?php include("mapa_localização.php"); ?>
                     
 
                   </div>
 
                   <div id="tab2" class="tab-pane fade">
-                    
+
                     <?php include("mapa.php"); ?>
                     
 
                   </div>
+
+                  <div id="tab4" class="tab-pane fade">
+
+                    <?php include("Tabela_Alertas.php"); ?>
+                    
+
+                  </div>
+
+                  
 
                   
 
@@ -477,6 +481,28 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
 
   } );
 
+  $('#example4').DataTable( {
+    "language": {
+      "lengthMenu": "Mostar _MENU_ alertas por página",
+      "zeroRecords": "Nenhum resultado",
+      "info": "Pagina de _PAGE_ de _PAGES_",
+      "infoEmpty": "",
+      "infoFiltered": "(Filtrado _MAX_ total de alertas)",
+      "oPaginate": {
+        "sFirst":    "Primeiro",
+        "sLast":    "Último",
+        "sNext":    "Seguinte",
+        "sPrevious": "Anterior",
+        "bDestroy": true,
+
+      },
+
+      "sLoadingRecords": "Carregar...",
+      "sSearch":        "Procurar:"
+    }
+
+  } );
+
   
 
 
@@ -489,7 +515,7 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
 <script type="text/javascript">
 
   var id_monitorizado = '<?php echo $id; ?>';
-
+  
   $.ajax({
     type: 'POST',
     url: "monitorizado_dados(Imagem).php",
@@ -510,7 +536,37 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
    }
  });
 
-  
+  var id_cuidador = '<?php echo $id_cuidador; ?>';
+  setInterval(function() {
+    //call $.ajax here
+
+    $.ajax({
+      type: 'POST',
+    url: "../../Alertas/alertas_aviso.php", //Cuidador\Alertas
+    data:{"id": id_cuidador},
+    success:function(data){
+      $("#criar").remove();
+      $("#alerta").append("<li id='criar'></a>");
+
+      var result=eval(data);
+      $('#numero_alertas').text("Tem "+result.length+" alertas pendentes");
+      $('#numero').text(result.length);
+
+      for (var i = 0; i < result.length; i++) {
+
+
+
+        $("#criar").append("<a id=a"+result[i].id+"></a>");
+        $("#a"+result[i].id).append("<h4 id=h"+result[i].id+">Alerta</h4>");
+        $("#h"+result[i].id).append("<small><i class='fa fa-clock-o'></i>"+result[i].data+"</small>");
+        $("#a"+result[i].id).append("<p>"+result[i].nome+" saiu da área segura</p>");
+
+
+      }
+    }
+  });
+
+  }, 2000); //2 seconds
 
 
   $('.ajax').click(function(){
@@ -520,6 +576,8 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
   });
   
 </script>
+
+
 
 </body>
 </html>
