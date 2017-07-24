@@ -11,6 +11,8 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
 
   $id_cuidador= $_SESSION['login_user_id'];
 
+  include("estatistica.php");
+
   ?>
 
   <!DOCTYPE html>
@@ -61,7 +63,7 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
                       <!-- end message -->
                     </ul>
                   </li>
-                  <li class="footer"><a href="Gestão_alertas.php">Ver todos os alertas</a></li>
+                  <li class="footer"><a href="Gerir_alertas.php">Ver todos os alertas</a></li>
                 </ul>
               </li>
               
@@ -114,8 +116,8 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="Gestão grupo/index.php"><i class="fa fa-circle-o"></i>Gestão do grupo</a></li>
-                <li><a href="Gestão_alertas.php"><i class="fa fa-circle-o"></i>Gestão alertas</a></li>
+                <li><a href="Gerir grupo/index.php"><i class="fa fa-circle-o"></i>Gestão do grupo</a></li>
+                <li><a href="Gerir_alertas.php"><i class="fa fa-circle-o"></i>Gestão alertas</a></li>
 
               </ul>
             </li>
@@ -132,73 +134,64 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
 
         <!-- Main content -->
         <section class="content">
-          <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-aqua">
-                <div class="inner">
-                  <h3>150</h3>
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-4 col-xs-6">
+            <div class="small-box bg-red">
+              <div class="inner">
+                <h3><?php echo $contagem_grupos['conta']; ?></h3>
 
-                  <p>New Orders</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-bag"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <p>Número de grupos</p>
               </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-green">
-                <div class="inner">
-                  <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                  <p>Bounce Rate</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
               </div>
+              
             </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-yellow">
-                <div class="inner">
-                  <h3>44</h3>
-
-                  <p>User Registrations</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-red">
-                <div class="inner">
-                  <h3>65</h3>
-
-                  <p>Unique Visitors</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-pie-graph"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
+            
           </div>
-          <!-- /.row -->
+          <!-- ./col -->
+          <div class="col-lg-4 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+              <div class="inner">
+                <h3><?php echo $contagem_principal['conta']; ?></h3>
 
+                <p>Cuidador principal</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+              <div class="inner">
+                <h3 id="contagem"></h3>
 
-        </section>
+                <p>Novos alertas</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+             
+            </div>
+
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-xs-6">
+            <!-- small box -->
+            
+          </div>
+          <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        
+
+                </section>
         <!-- /.content -->
       </div>
       <!-- /.content-wrapper -->
@@ -409,6 +402,20 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
 <?php include("../source_script.php"); ?>
 <script type="text/javascript">
   var id_cuidador = '<?php echo $id_cuidador; ?>';
+
+  $.ajax({
+      type: 'POST',
+    url: "Alertas/alertas_aviso.php", //Cuidador\Alertas
+    data:{"id": id_cuidador},
+    success:function(data){
+      
+
+      var result=eval(data);
+      
+      $('#contagem').text(result.length);
+      
+    }
+  });
   setInterval(function() {
     //call $.ajax here
 
@@ -422,6 +429,7 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
 
       var result=eval(data);
       $('#numero_alertas').text("Tem "+result.length+" alertas pendentes");
+      
       $('#numero').text(result.length);
 
       for (var i = 0; i < result.length; i++) {

@@ -1,29 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Login</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="plugins/iCheck/square/blue.css">
-
-</head>
-
-
-
 <?php 
-
-include("BD.php");
 session_start();
 if(isset($_SESSION['login_user_tipo']))
 {
@@ -45,25 +20,26 @@ if(isset($_SESSION['login_user_tipo']))
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+    
 // username e password recebidos do form
-  $username=mysqli_real_escape_string($sqli_connection,$_POST['username']);
-  $password=mysqli_real_escape_string($sqli_connection,$_POST['password']);
+  $username=$_POST['username'];
+  $password=$_POST['password'];
 
-
-  include("code/Login/Verifica_administrador.php");
+include("BD.php");
+  include("code/login/Verifica_administrador.php");
 
   $tipo_utilizador=existencia_admin($username, $password);
 
   
 
   if($tipo_utilizador=="false"){
-
-    include ("code/Login/Verifica_cuidador.php");
+     
+    include ("code/login/Verifica_cuidador.php");
     
 
   }
 
-  
+
   //Caso as credenciais sejam de um cuidador
 if($verifica_credenciais=="true"){
 
@@ -78,7 +54,7 @@ if($verifica_credenciais=="true"){
 
 }else{
 
-  //Caso as credenciais não sejam de um cuidador
+  //Caso as credenciais nПлкo sejam de um cuidador
   if($tipo_utilizador=="true"){
 
     $_SESSION['login_user_tipo']="Administrador";
@@ -95,47 +71,27 @@ if($verifica_credenciais=="true"){
 
 
 
-
-
-
-//caso o count seja igual a 1, há um cuidador com essas credenciais
-/*if($count==1)
-{
-
-
-  $_SESSION['login_id']=$row["ID_Utilizador"];
-
-
-
-
-
-  switch ($_SESSION['login_user_tipo']){
-
-    case 'Recursos humanos': $_SESSION['ano']=$ano['ID_Ano']; header("location: RH/dashboard.php"); break;
-
-    case 'Administrador': $_SESSION['ano']=$ano['ID_Ano']; header("location: admin/dashboard.php"); break;
-
-    case 'Gestor': $_SESSION['ano']=$ano['ID_Ano']; header("location: gestor/dashboard.php"); break;
-
-    case 'Colaborador': $_SESSION['ano']=$ano['ID_Ano']; header("location: colaborador/dashboard.php"); break;
-
-    default:
-    session_destroy();
-
-  }
-  
-}
-
-
-
-
-}
-else
-{
-  $error="Username or Password is invalid";
-}*/
-
 ?>
+<!DOCTYPE html>
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Login</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="plugins/iCheck/square/blue.css">
+
+</head>
 
 <body class="hold-transition login-page">
   <div class="login-box">
@@ -144,7 +100,7 @@ else
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-      <p class="login-box-msg">Efetue o login para iniciar a sessão</p>
+      <p class="login-box-msg">Efetue o login para iniciar a sessao</p>
 
       <form method="post" autocomplete="off">
         <div class="form-group has-feedback">

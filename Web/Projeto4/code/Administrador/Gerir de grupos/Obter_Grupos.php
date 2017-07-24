@@ -21,10 +21,10 @@
 
     ?>
     <tr>
-      <th><?php echo $monitorizado['Nome']; ?></th>
-      <th><?php echo $monitorizado['IMEI']; ?></th>
-      <th><?php echo $monitorizado['Data_Nascimento']; ?></th>
-      <th><?php echo $contagem['contagem'] ?></th>
+      <td><?php echo $monitorizado['Nome']; ?></td>
+      <td><?php echo $monitorizado['IMEI']; ?></td>
+      <td><?php echo $monitorizado['Data_Nascimento']; ?></td>
+      <td><?php echo $contagem['contagem'] ?></td>
     </td>
     <td>
       <span type="submit" class="btn glyphicon glyphicon-chevron-right getDados"  style="position: relative; float: right; margin-right: -5px" data-id="<?php echo $monitorizado['ID_Monitorizado']; ?>"></span> 

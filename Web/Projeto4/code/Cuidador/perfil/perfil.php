@@ -28,7 +28,7 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
-    <?php include("../Gestão grupo/source_link.php") ?>
+    <?php include("../Gerir grupo/source_link.php") ?>
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -105,8 +105,8 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="../Gestão grupo/index.php"><i class="fa fa-circle-o"></i>Gestão do grupo</a></li>
-                <li><a href="../Gestão_alertas.php"><i class="fa fa-circle-o"></i>Gestão alertas</a></li>
+                <li><a href="../Gerir grupo/index.php"><i class="fa fa-circle-o"></i>Gestão do grupo</a></li>
+                <li><a href="../Gerir_alertas.php"><i class="fa fa-circle-o"></i>Gestão alertas</a></li>
 
               </ul>
             </li>
@@ -527,7 +527,7 @@ if($_SESSION['login_user_tipo']=='Cuidador'){
   immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
-<?php include("../Gestão grupo/source_script.php") ?>
+<?php include("../Gerir grupo/source_script.php") ?>
 </body>
 </html>
 

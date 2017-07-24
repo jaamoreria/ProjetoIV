@@ -144,7 +144,7 @@ else
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-      <p class="login-box-msg">Efetue o login para iniciar a sessão</p>
+      <p class="login-box-msg">Efetue o login para iniciar a sessao</p>
 
       <form method="post" autocomplete="off">
         <div class="form-group has-feedback">
